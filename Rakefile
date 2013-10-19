@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-GraceTunes::Application.load_tasks
+Gracetunes::Application.load_tasks
