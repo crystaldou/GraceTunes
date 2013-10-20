@@ -7,7 +7,7 @@ class SongsController < ApplicationController
   end
 
   def index
-    
+    @a = "index"
   end
 
   def new

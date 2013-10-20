@@ -57,4 +57,6 @@ Gracetunes::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
   resources :songs
   
+  root :to => 'songs#index'
+  
 end
