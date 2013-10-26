@@ -10,6 +10,13 @@ class SongsController < ApplicationController
     @a = "index"
   end
 
+  def view
+    # @songs = list / something iterable.
+    # each element should be a hash --> i.e. each song in @songs, you can do song.title, song.artist, song.tags
+    # suggestion: for the file - instead of storing it in our app, could we link them to a dropbox or something
+    # from where they can download the song?; so the hash would store the link.
+  end
+
   def new
     # default: render 'new' template
   end
