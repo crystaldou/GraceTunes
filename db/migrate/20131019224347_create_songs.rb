@@ -3,12 +3,13 @@ class CreateSongs < ActiveRecord::Migration
     create_table :songs do |t|
       t.string :title
       t.string :artist
-      t.string :tag
+      t.string :album
+      t.string :tags
       t.timestamps
     end
   end
   
   def down
-    drop_talbe :songs
+    drop_table :songs
   end
 end
