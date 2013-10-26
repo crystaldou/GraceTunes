@@ -37,6 +37,14 @@ class SongsController < ApplicationController
     flash[:notice] = "Successfully removed '#{@song.title}' "
     redirect_to songs_path
   end
-
-
+  
+  def view
+    @type = params[:search_type]
+    @text = params[:search_text]
+    if @type == "title"
+      @songs = Songs.where(title: @text)
+    elsif @type == "artist"
+      @songs = Songs.where(artist: @text)
+    end
+  end
 end

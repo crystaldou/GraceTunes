@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+songs = [{:title => 'Aladdin', :rating => 'G', :release_date => '25-Nov-1992'},
+      	  {:title => 'Chicken Run', :rating => 'G', :release_date => '21-Jun-2000'},
+  	 ]
+
+songs.each do |song|
+  Songs.create!(song)
+end
