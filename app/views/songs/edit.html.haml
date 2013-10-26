@@ -1,0 +1,19 @@
+-# edit.html.haml using partial
+
+%h1 Edit Existing Song
+
+= form_tag movie_path(@song), :method => :put do
+
+  = label :song, :title, 'Title'
+  = text_field :song, 'title'
+
+  = label :song, :artist, 'Artist'
+  = text_field :song, :artist, 'Artist'
+
+  = label :song, :album, 'Album'
+  = text_field :album, :album
+
+  = label :song, :tags, 'Tags'
+  = text_field :movie, 'Tags'
+
+  = submit_tag 'Update Song Info'

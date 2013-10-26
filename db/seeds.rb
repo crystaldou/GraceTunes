@@ -6,9 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-songs = [{:title => 'Aladdin', :rating => 'G', :release_date => '25-Nov-1992'},
-      	  {:title => 'Chicken Run', :rating => 'G', :release_date => '21-Jun-2000'},
+songs = [{:title => 'Your Love Never Fails', :artist => 'Jesus Culture', :album => 'From The Inside Out', :tags => 'love, never fails'},
+      	  {:title => 'Give Me Faith', :artist => 'Elevation Worship', :album => 'Kingdom Come', :tags => 'faith, spirit, perseverance'},
   	 ]
+
 
 songs.each do |song|
   Songs.create!(song)
