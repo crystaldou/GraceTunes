@@ -7,7 +7,6 @@
       %th Title
       %th Artist
       %th Tags
-      %th Download Link
       %th View
       %th Edit
   %tbody
@@ -16,6 +15,5 @@
         %td= song.title
         %td= song.artist
         %td= song.tags
-        %td= link_to "Download", song.download_link
         %td= link_to "View", song_path(song)
         %td= link_to "Edit", edit_song_path(song)
