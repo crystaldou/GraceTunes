@@ -1,20 +1,13 @@
 class SongsController < ApplicationController
 
+  # viewing a single song page
   def show
     id = params[:id] # retrieve movie ID from URI route
     @song = Songs.find(id) # look up movie by unique ID
-    
   end
 
   def index
     @a = "index"
-  end
-
-  def view
-    # @songs = list / something iterable.
-    # each element should be a hash --> i.e. each song in @songs, you can do song.title, song.artist, song.tags
-    # suggestion: for the file - instead of storing it in our app, could we link them to a dropbox or something
-    # from where they can download the song?; so the hash would store the link.
   end
 
   def new
@@ -27,10 +20,13 @@ class SongsController < ApplicationController
     redirect_to songs_path
   end
 
+  # edit_song_path(song)
+  # Edit page for a song
   def edit
     @song = Songs.find params[:id]
   end
 
+  # go here when click submit after editing a page
   def update
     @song = Songs.find params[:id]
     @song.update_attributes!(params[:movie])
@@ -45,7 +41,12 @@ class SongsController < ApplicationController
     redirect_to songs_path
   end
   
+  # viewing results page
   def view
+    # @songs = list / something iterable.
+    # each element should be a hash --> i.e. each song in @songs, you can do song.title, song.artist, song.tags
+    # suggestion: for the file - instead of storing it in our app, could we link them to a dropbox or something
+    # from where they can download the song?; so the hash would store the link.
     @type = params[:search_type]
     @text = params[:search_text]
     if @type == "title"
