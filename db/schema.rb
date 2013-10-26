@@ -16,7 +16,8 @@ ActiveRecord::Schema.define(:version => 20131019224347) do
   create_table "songs", :force => true do |t|
     t.string   "title"
     t.string   "artist"
-    t.string   "tag"
+    t.string   "album"
+    t.string   "tags"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
