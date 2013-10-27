@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails GraceTunes: development" product="SQLite" version="3.7.2" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" uuid="2a1ccb73-7e56-4287-8da9-0c707499104e">
+    <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+    <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/xerial-sqlite-license.txt</url>
+      </library>
+      <library>
+        <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/sqlite-jdbc-3.7.2.jar</url>
+      </library>
+    </libraries>
+    <schema name="" catalog=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails GraceTunes: cucumber" product="SQLite" version="3.7.2" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" uuid="7c0650e3-4646-4acf-838e-ddd248ef5df2">
+    <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+    <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/test.sqlite3</jdbc-url>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/xerial-sqlite-license.txt</url>
+      </library>
+      <library>
+        <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/sqlite-jdbc-3.7.2.jar</url>
+      </library>
+    </libraries>
+    <schema name="" catalog=""/>
+    <table name="schema_migrations" schema="" catalog="" type="TABLE">
+      <column name="version" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <index name="unique_schema_migrations" unique="true" columns="version"/>
+    </table>
+    <table name="songs" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="artist" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="album" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="tags" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <column name="updated_at" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
+      <column name="name" sqlType="" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="seq" sqlType="" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+    </table>
+  </data-source>
+  <data-source source="LOCAL" name="Rails GraceTunes: test" product="SQLite" version="3.7.2" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" uuid="12b46eee-9548-4075-b48d-908fdadddc9f">
+    <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+    <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/test.sqlite3</jdbc-url>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/xerial-sqlite-license.txt</url>
+      </library>
+      <library>
+        <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/sqlite-jdbc-3.7.2.jar</url>
+      </library>
+    </libraries>
+    <schema name="" catalog=""/>
+    <table name="schema_migrations" schema="" catalog="" type="TABLE">
+      <column name="version" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <index name="unique_schema_migrations" unique="true" columns="version"/>
+    </table>
+    <table name="songs" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="artist" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="album" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="tags" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <column name="updated_at" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
+      <column name="name" sqlType="" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="seq" sqlType="" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+    </table>
+  </data-source>
+</component>

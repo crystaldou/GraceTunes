@@ -24,14 +24,19 @@ class SongsController < ApplicationController
   # Edit page for a song
   def edit
     @song = Songs.find params[:id]
+
   end
 
   # go here when click submit after editing a page
   def update
     @song = Songs.find params[:id]
-    @song.update_attributes!(params[:movie])
-    flash[:notice] = "#{@song.title} was successfully updated."
-    redirect_to songs_path(@song)
+    if @song.title.empty?
+      raise "Cannot leave song field empty"
+    else
+      @song.update_attributes!(params[:song])
+      flash[:notice] = "#{@song.title} has been successfully updated."
+      redirect_to songs_path(@song)
+    end
   end
 
   def destroy
