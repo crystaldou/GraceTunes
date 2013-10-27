@@ -67,6 +67,7 @@ end
 
 When /^(?:|I )edit "([^"]*)"$/ do |song|
  @song = Songs.where(title: song)
+ visit edit_song_path(@song)
 end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
