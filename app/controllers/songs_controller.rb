@@ -54,10 +54,16 @@ class SongsController < ApplicationController
     # from where they can download the song?; so the hash would store the link.
     @type = params[:search_type]
     @text = params[:search_text]
-    if @type == "title"
-      @songs = Songs.where(title: @text)
-    elsif @type == "artist"
-      @songs = Songs.where(artist: @text)
+    if @type
+      if @type[:options] == "Title"
+        @songs = Songs.where(title: @text)
+      elsif @type[:options] == "Artist"
+        @songs = Songs.where(artist: @text)
+      elsif @type[:options] == "Album"
+        @songs = Songs.where(album: @text)
+      end
+    else
+      @songs = Songs.all
     end
   end
 end

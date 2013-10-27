@@ -62,11 +62,12 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
 end
 
 When /^(?:|I )search by "([^"]*)" with "([^"]*)"$/ do |field, value|
- visit path_to("search/"+field, :with => value)
+ visit songs_view_path(:search_type => {:options => field}, :search_text => value)
 end
 
 When /^(?:|I )edit "([^"]*)"$/ do |song|
- visit path_to("edit/"+song)
+ @song = Songs.where(title: song)
+ visit edit_song_path(@song.all)
 end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
