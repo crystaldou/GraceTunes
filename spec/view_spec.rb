@@ -1,16 +1,14 @@
 require 'spec_helper'
 
-describe Songs do
+describe SongsController, :type => :controller do
   before :each do
-    @song = Songs.new do |s|
-      s.title = "blah"
-      s.artist = "b"
-    end
+    @song = SongsController.new
   end
   
-  describe "#new" do
+  describe "#view" do
     it "blah blah blah" do
-      @song.should be_an_instance_of Songs
+      get :view
+      response.should render_template :view
     end
   end
   

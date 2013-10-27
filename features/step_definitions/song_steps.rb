@@ -43,7 +43,7 @@ end
 
 Given /the following songs exist/ do |songs_table| 
   songs_table.hashes.each do |song|
-    Song.create(song)
+    Songs.create(song)
   end
 end
 

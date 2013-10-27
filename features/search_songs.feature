@@ -7,7 +7,7 @@ Feature: display of the results page that after searching for a certain tag, art
 Background: songs have been added to database
 
 	Given the following songs exist:
-  	| title                   | artist                     | tag                                      | album                               |
+  	| title                   | artist                     | tags                                      | album                               |
   	| Your Love Never Fails   | Jesus Culture              | love, never fails                        | From The Inside Out                 |
   	| Give Me Faith           | Elevation Worship          | faith, spirit, perseverance              | Kingdom Come                        |
   	| From the Inside Out     | Hillsong United            | transformation, changed lives, failures  | United We Stand                     |
@@ -20,7 +20,7 @@ Background: songs have been added to database
   	| Commission My Soul      | Citipointe Live            | evangelism, purpose, great commission    | Commission My Soul: Present         |
 	| Let Me Sing			  | unknown					   | praise, 								  | unknown								|
 
-	And I am on the GraceTunes search results page
+	And I am on the songs page
 	
 Scenario: search results to songs with title 'From the Inside Out'
 	When I search by "title" with "From the Inside Out"

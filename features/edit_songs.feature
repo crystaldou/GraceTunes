@@ -7,7 +7,7 @@ Feature: Edit a pre-existing song's fields and tags
 Background: songs have been added to database
 
 Given the following songs exist:
-  	| title                   | artist                     | tag                                      | album                               |
+  	| title                   | artist                     | tags                                      | album                               |
   	| Your Love Never Fails   | Jesus Culture              | love, never fails                        | From The Inside Out                 |
   	| Give Me Faith           | Elevation Worship          | faith, spirit, perseverance              | From The Inside Out                 |
   	| From the Inside Out     | Hillsong United            | transformation, changed lives, failures  | United We Stand                     |
