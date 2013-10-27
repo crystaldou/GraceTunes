@@ -7,7 +7,7 @@ Feature: Edit a pre-existing song's fields and tags
 Background: songs have been added to database
 
 Given the following songs exist:
-  	| title                   | artist                     | tag                                      | album                               |
+  	| title                   | artist                     | tags                                      | album                               |
   	| Your Love Never Fails   | Jesus Culture              | love, never fails                        | From The Inside Out                 |
   	| Give Me Faith           | Elevation Worship          | faith, spirit, perseverance              | From The Inside Out                 |
   	| From the Inside Out     | Hillsong United            | transformation, changed lives, failures  | United We Stand                     |
@@ -19,40 +19,43 @@ Given the following songs exist:
   	| God Is Able             | Hillsong United            | powerful, hope, with us                  | God Is Able                         |
   	| Commission My Soul      | Citipointe Live            | evangelism, purpose, great commission    | Commission My Soul: Present         |
 
-  And I am on the GraceTunes edit page 
+  And I am on the GraceTunes view page 
 
 Scenario: 
 
 	When I edit "Desert Soul"
-	Then the "title" field should contain "Desert Soul"
-	Then the "tags" field should contain "dead, burnt out, perseverance"
-	Then the "album" field should contain "Homemade Worship by Handmade People" 
-	Then the "artist" field should contain "Rend Collective Experiment"
+	Then the "song_title" field should contain "Desert Soul"
+	Then the "song_tags" field should contain "dead, burnt out, perseverance"
+	Then the "song_album" field should contain "Homemade Worship By Handmade People" 
+	Then the "song_artist" field should contain "Rend Collective Experiment"
 	
-	When I fill in "tags" with "dry, dead, burnt out, perseverance" 
-	When I press "submit"
-	And I should see "Song has been successfully editted"
+	When I fill in "song_tags" with "dry, dead, burnt out, perseverance" 
+	When I press "submit_song"
+	And I should see "Song has been successfully edited"
 
+Scenario:
 
 	When I edit "Give Me Faith"
-	Then the "title" field should contain "Give Me Faith"
-	Then the "tags" field should contain "faith, spirit, perseverance" 
-	Then the "album" field should contain "From The Inside Out" 
-	Then the "artist" field should contain "Elevation Worship"
+	Then the "song_title" field should contain "Give Me Faith"
+	Then the "song_tags" field should contain "faith, spirit, perseverance" 
+	Then the "song_album" field should contain "From The Inside Out" 
+	Then the "song_artist" field should contain "Elevation Worship"
 
-	When I fill in "album" with "Kingdom Come" 
-	When I press "submit"
-	And I should see "Song has been successfully editted"
+	When I fill in "song_album" with "Kingdom Come" 
+	When I press "submit_song"
+	And I should see "Song has been successfully edited"
 
+Scenario:
 
 	When I edit "God Is Able" 
-	Then the "title" field should contain "God Is Able"
-	Then the "tags" field should contain "powerful, hope, with us"
-	Then the "album" field should contain "God Is Able"
-	Then the "artist" field should contain "Hillsong United"
+	Then the "song_title" field should contain "God Is Able"
+	Then the "song_tags" field should contain "powerful, hope, with us"
+	Then the "song_album" field should contain "God Is Able"
+	Then the "song_artist" field should contain "Hillsong United"
 
-	When I fill in "title" with "" 
-	Then the "title" field should have the error "Cannot leave song field empty"
+	When I fill in "song_title" with "" 
+	When I press "submit_song"
+	Then the "song_title" field should have the error "Cannot leave song field empty"
 
 
 

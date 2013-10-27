@@ -7,7 +7,7 @@ Feature: display of the results page that after searching for a certain tag, art
 Background: songs have been added to database
 
 	Given the following songs exist:
-  	| title                   | artist                     | tag                                      | album                               |
+  	| title                   | artist                     | tags                                      | album                               |
   	| Your Love Never Fails   | Jesus Culture              | love, never fails                        | From The Inside Out                 |
   	| Give Me Faith           | Elevation Worship          | faith, spirit, perseverance              | Kingdom Come                        |
   	| From the Inside Out     | Hillsong United            | transformation, changed lives, failures  | United We Stand                     |
@@ -20,26 +20,21 @@ Background: songs have been added to database
   	| Commission My Soul      | Citipointe Live            | evangelism, purpose, great commission    | Commission My Soul: Present         |
 	| Let Me Sing			  | unknown					   | praise, 								  | unknown								|
 
-	And I am on the GraceTunes search results page
+	And I am on the songs page
 	
 Scenario: search results to songs with title 'From the Inside Out'
-	When I search by "title" with "From the Inside Out"
-	Then the "tags" field should contain "transformation, changed lives, failures"
-	Then the "album" field should contain "From the Inside Out" 
-	Then the "artist" field should contain "Hillsong United"
+	When I search by "Title" with "From the Inside Out"
+	Then I should see "transformation, changed lives, failures"
+	Then I should see "From the Inside Out" 
+	Then I should see "Hillsong United"
 
 Scenario: search results to songs with artist 'Matt Redman'
-	When I search by "artist" with "Matt Redman"
+	When I search by "Artist" with "Matt Redman"
 	Then I should see "10,000 Reasons"
 	Then I should see "The Heart of Worship"
-	
-Scenario: search results to songs with tag 'perseverance'
-	When I search by "tag" with "perseverance"
-	Then I should see "Give Me Faith"	
-	Then I should see "Desert Soul"
 		
 Scenario: search results to songs with album 'Homemade Worship By Handmade People'
-	When I search by "album" with "Homemade Worship By Handmade People"
+	When I search by "Album" with "Homemade Worship By Handmade People"
 	Then I should see "Build Your Kingdom Here"		
 	Then I should see "Desert Soul"
 	
