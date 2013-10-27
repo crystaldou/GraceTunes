@@ -1,0 +1,19 @@
+-#  This file is app/views/songs/view.html.haml
+%h1 Results
+
+%table#songs
+  %thead
+    %tr
+      %th Title
+      %th Artist
+      %th Tags
+      %th View
+      %th Edit
+  %tbody
+    - @songs.each do |song|
+      %tr
+        %td= song.title
+        %td= song.artist
+        %td= song.tags
+        %td= link_to "View", song_path(song)
+        %td= link_to "Edit", edit_song_path(song)
