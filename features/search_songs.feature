@@ -24,19 +24,14 @@ Background: songs have been added to database
 	
 Scenario: search results to songs with title 'From the Inside Out'
 	When I search by "title" with "From the Inside Out"
-	Then the "tags" field should contain "transformation, changed lives, failures"
-	Then the "album" field should contain "From the Inside Out" 
-	Then the "artist" field should contain "Hillsong United"
+	Then I should see "transformation, changed lives, failures"
+	Then I should see "From the Inside Out" 
+	Then I should see "Hillsong United"
 
 Scenario: search results to songs with artist 'Matt Redman'
 	When I search by "artist" with "Matt Redman"
 	Then I should see "10,000 Reasons"
 	Then I should see "The Heart of Worship"
-	
-Scenario: search results to songs with tag 'perseverance'
-	When I search by "tag" with "perseverance"
-	Then I should see "Give Me Faith"	
-	Then I should see "Desert Soul"
 		
 Scenario: search results to songs with album 'Homemade Worship By Handmade People'
 	When I search by "album" with "Homemade Worship By Handmade People"

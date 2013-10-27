@@ -19,7 +19,7 @@ Given the following songs exist:
   	| God Is Able             | Hillsong United            | powerful, hope, with us                  | God Is Able                         |
   	| Commission My Soul      | Citipointe Live            | evangelism, purpose, great commission    | Commission My Soul: Present         |
 
-  And I am on the GraceTunes edit page 
+  And I am on the GraceTunes view page 
 
 Scenario: 
 
@@ -31,7 +31,7 @@ Scenario:
 	
 	When I fill in "tags" with "dry, dead, burnt out, perseverance" 
 	When I press "submit"
-	And I should see "Song has been successfully editted"
+	And I should see "Song has been successfully edited"
 
 
 	When I edit "Give Me Faith"
@@ -42,7 +42,7 @@ Scenario:
 
 	When I fill in "album" with "Kingdom Come" 
 	When I press "submit"
-	And I should see "Song has been successfully editted"
+	And I should see "Song has been successfully edited"
 
 
 	When I edit "God Is Able" 

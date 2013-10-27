@@ -53,6 +53,10 @@ class SongsController < ApplicationController
       @songs = Songs.where(title: @text)
     elsif @type == "Artist"
       @songs = Songs.where(artist: @text)
+    elsif @type == "Album"
+      @songs = Songs.where(album: @text)
+    else
+      @songs = Songs.all
     end
   end
 end
