@@ -23,18 +23,18 @@ Background: songs have been added to database
 	And I am on the songs page
 	
 Scenario: search results to songs with title 'From the Inside Out'
-	When I search by "title" with "From the Inside Out"
+	When I search by "Title" with "From the Inside Out"
 	Then I should see "transformation, changed lives, failures"
 	Then I should see "From the Inside Out" 
 	Then I should see "Hillsong United"
 
 Scenario: search results to songs with artist 'Matt Redman'
-	When I search by "artist" with "Matt Redman"
+	When I search by "Artist" with "Matt Redman"
 	Then I should see "10,000 Reasons"
 	Then I should see "The Heart of Worship"
 		
 Scenario: search results to songs with album 'Homemade Worship By Handmade People'
-	When I search by "album" with "Homemade Worship By Handmade People"
+	When I search by "Album" with "Homemade Worship By Handmade People"
 	Then I should see "Build Your Kingdom Here"		
 	Then I should see "Desert Soul"
 	
