@@ -47,12 +47,16 @@ class SongsController < ApplicationController
     # each element should be a hash --> i.e. each song in @songs, you can do song.title, song.artist, song.tags
     # suggestion: for the file - instead of storing it in our app, could we link them to a dropbox or something
     # from where they can download the song?; so the hash would store the link.
-    @type = params[:search_type]
+    @type = params[:search_type][:options]
     @text = params[:search_text]
-    if @type == "title"
+    if @type == "Title"
       @songs = Songs.where(title: @text)
-    elsif @type == "artist"
+    elsif @type == "Artist"
       @songs = Songs.where(artist: @text)
+    elsif @type == "Album"
+      @songs = Songs.where(album: @text)
+    else
+      @songs = Songs.all
     end
   end
 end
