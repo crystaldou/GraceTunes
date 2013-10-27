@@ -24,7 +24,6 @@ class SongsController < ApplicationController
   # Edit page for a song
   def edit
     @song = Songs.find params[:id]
-
   end
 
   # go here when click submit after editing a page
@@ -36,7 +35,7 @@ class SongsController < ApplicationController
     else
       @song.update_attributes!(params[:song])
       flash[:notice] = "Song has been successfully edited"
-      redirect_to songs_path(@song)
+      redirect_to "/songs/#{@song.id.to_s}"
     end
 
   end
