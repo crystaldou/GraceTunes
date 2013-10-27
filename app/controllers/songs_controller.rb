@@ -31,12 +31,14 @@ class SongsController < ApplicationController
   def update
     @song = Songs.find params[:id]
     if @song.title.empty?
+      #how to raise a field error??
       raise "Cannot leave song field empty"
     else
       @song.update_attributes!(params[:song])
-      flash[:notice] = "#{@song.title} has been successfully updated."
+      flash[:notice] = "Song has been successfully edited"
       redirect_to songs_path(@song)
     end
+
   end
 
   def destroy
