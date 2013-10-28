@@ -5,10 +5,17 @@ describe SongsController, :type => :controller do
     @song = SongsController.new
   end
   
-  describe "#view" do
+  describe "#index" do
     it "blah blah blah" do
+      get :index
+      response.should render_template :index
+    end
+  end
+  
+  describe '#view' do
+    it 'blah' do
       get :view
-      response.should render_template :view
+      response.should render_template :index
     end
   end
   
