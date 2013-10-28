@@ -29,7 +29,7 @@ class SongsController < ApplicationController
   # go here when click submit after editing a page
   def update
     @song = Songs.find params[:id]
-    if @song.title.empty?
+    if params[:song][:title].empty?
       #how to raise a field error??
       raise "Cannot leave song field empty"
     else
