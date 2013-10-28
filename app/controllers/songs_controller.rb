@@ -29,9 +29,15 @@ class SongsController < ApplicationController
   # go here when click submit after editing a page
   def update
     @song = Songs.find params[:id]
-    @song.update_attributes!(params[:movie])
-    flash[:notice] = "#{@song.title} was successfully updated."
-    redirect_to songs_path(@song)
+    if @song.title.empty?
+      #how to raise a field error??
+      raise "Cannot leave song field empty"
+    else
+      @song.update_attributes!(params[:song])
+      flash[:notice] = "Song has been successfully edited"
+      redirect_to "/songs/#{@song.id.to_s}"
+    end
+
   end
 
   def destroy

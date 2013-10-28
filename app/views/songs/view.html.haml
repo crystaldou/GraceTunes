@@ -6,6 +6,7 @@
     %tr
       %th Title
       %th Artist
+      %th Album
       %th Tags
       %th View
       %th Edit
@@ -14,6 +15,7 @@
       %tr
         %td= song.title
         %td= song.artist
+        %td= song.album
         %td= song.tags
         %td= link_to "View", song_path(song)
         %td= link_to "Edit", edit_song_path(song)
