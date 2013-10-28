@@ -1,5 +1,7 @@
 -# in app/views/songs/show.html.haml
-
+- if flash[:notice]
+  #notice.message= flash[:notice]
+  
 %h2 Details about #{@song.title}
 
 %ul#details

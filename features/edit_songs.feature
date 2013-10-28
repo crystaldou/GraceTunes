@@ -45,17 +45,7 @@ Scenario:
 	When I press "submit_song"
 	And I should see "Song has been successfully edited"
 
-Scenario:
 
-	When I edit "God Is Able" 
-	Then the "song_title" field should contain "God Is Able"
-	Then the "song_tags" field should contain "powerful, hope, with us"
-	Then the "song_album" field should contain "God Is Able"
-	Then the "song_artist" field should contain "Hillsong United"
-
-	When I fill in "song_title" with "" 
-	When I press "submit_song"
-	Then the "song_title" field should have the error "Cannot leave song field empty"
 
 
 
