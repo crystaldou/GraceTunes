@@ -19,7 +19,6 @@ songs = [{:title => 'Your Love Never Fails', :artist => 'Jesus Culture', :album 
   	  {:title => 'Commission My Soul', :artist => 'Citipointe Live', :album => 'Commission My Soul: Present', :tags => 'evangelism, purpose, great commission'}
   	 ]
   	 
-Songs.destroy_all
   	 
 songs.each do |song|
   Songs.create!(song)
