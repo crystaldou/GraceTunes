@@ -7,7 +7,7 @@ Feature: Edit a pre-existing song's fields and tags
 Background: songs have been added to database
 
 Given the following songs exist:
-  	| title                   | artist                     | tags                                      | album                               |
+  	| title                   | artist                     | tags                                     | album                               |
   	| Your Love Never Fails   | Jesus Culture              | love, never fails                        | From The Inside Out                 |
   	| Give Me Faith           | Elevation Worship          | faith, spirit, perseverance              | From The Inside Out                 |
   	| From the Inside Out     | Hillsong United            | transformation, changed lives, failures  | United We Stand                     |
@@ -44,6 +44,14 @@ Scenario:
 	When I fill in "song_album" with "Kingdom Come" 
 	When I press "submit_song"
 	And I should see "Song has been successfully edited"
+
+Scenario: 
+	When I edit "Commission My Soul" 
+	When I press "upload_lyrics" 
+	And I should see "Upload Window" 
+	When I press "submit_song" 
+	And I should see "Song has been successfully edited"
+	Then the "song_lyrics" field should contain something
 
 
 
