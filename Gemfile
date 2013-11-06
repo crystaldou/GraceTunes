@@ -32,6 +32,8 @@ group :assets do
   gem 'sass-rails', '~> 3.2.6'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier'
+  gem 'less-rails'
+  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
