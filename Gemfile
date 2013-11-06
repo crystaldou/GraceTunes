@@ -14,6 +14,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'sunspot_solr'
 end
 
 group :test do
@@ -35,6 +36,7 @@ end
 
 gem 'jquery-rails'
 gem 'haml'
+gem 'sunspot_rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
