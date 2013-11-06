@@ -55,6 +55,12 @@ table#movies th.hilite {
   margin: 1em 0;
   padding: 4px;
 }
+#search_text { 
+  width: 340px;
+}
+#search_type_options {
+  width: 353px;
+}
 form label {
   display: block;
   line-height: 25px;
