@@ -1,8 +1,8 @@
 -# in app/views/songs/show.html.haml
 - if flash[:notice]
-  #notice.message= flash[:notice]
+  #notice.message{:class=> 'alert'}= flash[:notice]
   
-%h2 Details about #{@song.title}
+%h4 Details about #{@song.title}
 
 %ul#details
   %li
@@ -12,12 +12,12 @@
     Album:
     = @song.album
 
-%h3 Tags:
+  %li 
+    Tags:
+    = @song.tags
 
-%p#tags= @song.tags
-
-%h4 To download: NOT AVAILABLE
+%h5 Download Link: N/A
 
 = link_to 'Edit', edit_song_path(@song)
-= button_to 'Delete', song_path(@song), :method => :delete, :confirm => 'Are you sure?'
 = link_to 'Back to search bar', songs_path
+= button_to 'Delete', song_path(@song), :method => :delete, :confirm => 'Are you sure?', :class=>'btn btn-danger'
