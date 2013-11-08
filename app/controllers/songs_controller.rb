@@ -54,17 +54,58 @@ class SongsController < ApplicationController
     # suggestion: for the file - instead of storing it in our app, could we link them to a dropbox or something
     # from where they can download the song?; so the hash would store the link.
     @type = params[:search_type]
-    @text = params[:search_text]
-    if @type
-      if @type[:options] == "Title"
-        @songs = Songs.where(title: @text)
-      elsif @type[:options] == "Artist"
-        @songs = Songs.where(artist: @text)
-      elsif @type[:options] == "Album"
-        @songs = Songs.where(album: @text)
+    begin
+      if params[:search_text]
+        if @type[:options] == "Title"
+          @search = Songs.search do
+            fulltext params[:search_text] do
+              fields(:title)
+            end
+          end
+          @songs = @search.results
+        elsif @type[:options] == "Tags"
+          @search = Songs.search do
+            fulltext params[:search_text] do
+              fields(:tags)
+            end
+          end
+        else
+          @search = Songs.search do
+            fulltext params[:search_text]
+          end
+          @songs = @search.results
+        end
+      else
+        @songs = Songs.all
       end
-    else
-      @songs = Songs.all
+    rescue
+      if @type
+        @text = params[:search_text]
+        if @type[:options] == "Title"
+          @songs = Songs.where("title LIKE '%#{@text}%'")
+        elsif @type[:options] == "Artist"
+          @songs = Songs.where(artist: @text)
+        elsif @type[:options] == "Album"
+          @songs = Songs.where(album: @text)
+        elsif @type[:options] == "Tags"
+          @songs = Songs.where("tags LIKE '%#{@text}%'")
+        end
+      else
+        @songs = Songs.all
+      end
     end
+    @tags = {}
+    @songs.each do |song|
+      begin
+        @tags[song] = parse(song.tags)
+      rescue
+        raise ArgumentError, @tags
+      end
+  end
+    
+  end
+  
+  def parse text
+    return text.split(", ")
   end
 end
