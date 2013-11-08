@@ -48,9 +48,11 @@ class SongsController < ApplicationController
 
   def destroy
     @song = Songs.find(params[:id])
+    @song.remove_file!
+    system "rm -rf public/data/#{@song.id.to_s}"
     @song.destroy
     flash[:notice] = "Successfully removed '#{@song.title}' "
-    redirect_to songs_path
+    redirect_to songs_view_path
   end
   
   # viewing results page
