@@ -13,7 +13,8 @@ class FileUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "data/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    #"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "data/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -39,13 +40,18 @@ class FileUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(doc pdf)
+    %w(doc pdf docx)
   end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
+  #def filename
   #   "something.jpg" if original_filename
   # end
+
+  before :cache, :save_original_filename
+  def save_original_filename(file)
+    model.original_filename ||= file.original_filename if file.respond_to?(:original_filename)
+  end
 
 end
