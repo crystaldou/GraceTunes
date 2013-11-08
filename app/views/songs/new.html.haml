@@ -1,9 +1,7 @@
--# edit.html.haml using partial
-
 %div{:style=>'margin-left:25px; margin-right:25px'}
-  %h3 Edit Existing Song
+  %h1 Create New Song
 
-  = form_tag song_path(@song), :method => :put do
+  = form_tag songs_path, :html => {:multipart => true} do
 
     = label :song, :title, 'Title: '
     = text_field :song, 'title'
@@ -13,12 +11,13 @@
     = text_field :song, 'artist'
     %br
 
-    = label :song, :album, 'Album: '
-    = text_field :song, 'album'
-    %br
-
     = label :song, :tags, 'Tags: '
     = text_field :song, 'tags'
     %br
 
-    = submit_tag 'Update Song Info', :id => 'submit_song', :class => 'btn btn-warning'
+    = label :song, :file, 'Choose file: '
+    = file_field :song, 'file'
+    %br
+    %br
+
+    = submit_tag 'Save Changes', :id => 'submit_song', :class => 'btn btn-warning'
