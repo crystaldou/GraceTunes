@@ -1,3 +1,5 @@
+require 'yomu'
+
 class SongsController < ApplicationController
 
   # viewing a single song page
@@ -46,7 +48,7 @@ class SongsController < ApplicationController
     flash[:notice] = "Successfully removed '#{@song.title}' "
     redirect_to songs_path
   end
-  
+
   # viewing results page
   def view
     # @songs = list / something iterable.
@@ -65,6 +67,14 @@ class SongsController < ApplicationController
       end
     else
       @songs = Songs.all
+    end
+  end
+
+  def test
+    @texts = {}
+    Dir['public/songs/*'].each do |file|
+      yomu = Yomu.new file.to_s
+      @texts[file] = [ yomu.text, yomu.text.gsub(/^$\n/, '') ]
     end
   end
 end
