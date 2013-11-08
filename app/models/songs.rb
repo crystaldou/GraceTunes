@@ -1,10 +1,10 @@
 class Songs < ActiveRecord::Base
   
-  attr_accessible :title, :artist, :album, :tags, :file
-  
+
   #auto_index false for now for testing
   searchable :auto_index => false do 
     text :title, :tags
   end
+  attr_accessible :title, :artist, :album, :tags, :file, :original_filename
   mount_uploader :file, FileUploader
 end
