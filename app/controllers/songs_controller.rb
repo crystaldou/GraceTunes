@@ -4,7 +4,7 @@ class SongsController < ApplicationController
   def show
     id = params[:id] # retrieve movie ID from URI route
     @song = Songs.find(id) # look up movie by unique ID
-    
+
     if @song.file  
       @link = @song.file.to_s
     else
@@ -23,7 +23,8 @@ class SongsController < ApplicationController
   def create
     @song = Songs.create!(params[:song])
     flash[:notice] = "#{@song.title} was successfully created."
-    redirect_to songs_path
+    #redirect_to songs_path
+    redirect_to "/songs/#{@song.id.to_s}"
   end
 
   # edit_song_path(song)
