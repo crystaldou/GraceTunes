@@ -14,6 +14,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'yomu'
 end
 
 group :test do
