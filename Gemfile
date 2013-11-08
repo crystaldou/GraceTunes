@@ -39,6 +39,7 @@ end
 gem 'jquery-rails'
 gem 'haml'
 gem 'sunspot_rails', github: 'sunspot/sunspot', branch: 'master'
+gem 'carrierwave'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

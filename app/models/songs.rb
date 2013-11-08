@@ -6,4 +6,5 @@ class Songs < ActiveRecord::Base
   searchable :auto_index => false do 
     text :title, :tags
   end
+  mount_uploader :file, FileUploader
 end
