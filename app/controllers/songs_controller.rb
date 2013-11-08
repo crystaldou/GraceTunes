@@ -4,6 +4,12 @@ class SongsController < ApplicationController
   def show
     id = params[:id] # retrieve movie ID from URI route
     @song = Songs.find(id) # look up movie by unique ID
+    
+    if @song.file  
+      @link = @song.file.to_s
+    else
+      @link = "/songs/#{@song.id.to_s}"
+    end
   end
 
   def index
@@ -67,4 +73,5 @@ class SongsController < ApplicationController
       @songs = Songs.all
     end
   end
+
 end
