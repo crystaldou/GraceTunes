@@ -19,7 +19,7 @@
 
 %div{:style=>'margin-right:25px'}
   %div{:style=>'float:left'} 
-    = button_to 'Download', "/data/#{@song.id}/#{@song.original_filename}", :method => :get, :class=>'btn btn-success',  :style => 'margin-right:10px; margin-left:30px'
+    = button_to 'Download', @link, :method => :get, :class=>'btn btn-success',  :style => 'margin-right:10px'
 
   %div{:style=>'float:left'} 
     = link_to 'Edit', edit_song_path(@song), :class=>'btn btn-warning',  :style => 'margin-right:10px; text-decoration: none; font-weight: normal'

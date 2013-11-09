@@ -15,6 +15,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'sunspot_solr', github: 'sunspot/sunspot', branch: 'master'
+  gem 'yomu'
 end
 
 group :test do
