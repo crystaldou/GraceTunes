@@ -4,6 +4,12 @@ class SongsController < ApplicationController
   def show
     id = params[:id] # retrieve movie ID from URI route
     @song = Songs.find(id) # look up movie by unique ID
+
+    if @song.file  
+      @link = @song.file.to_s
+    else
+      @link = "/songs/#{@song.id.to_s}"
+    end
   end
 
   def index
@@ -17,35 +23,36 @@ class SongsController < ApplicationController
   def create
     @song = Songs.create!(params[:song])
     flash[:notice] = "#{@song.title} was successfully created."
-    redirect_to songs_path
+    redirect_to "/songs/#{@song.id.to_s}"
   end
 
   # edit_song_path(song)
   # Edit page for a song
   def edit
     @song = Songs.find params[:id]
-
   end
 
   # go here when click submit after editing a page
   def update
     @song = Songs.find params[:id]
-    if @song.title.empty?
+    if params[:song][:title].empty?
       #how to raise a field error??
       raise "Cannot leave song field empty"
     else
       @song.update_attributes!(params[:song])
       flash[:notice] = "Song has been successfully edited"
-      redirect_to songs_path(@song)
+      redirect_to "/songs/#{@song.id.to_s}"
     end
 
   end
 
   def destroy
     @song = Songs.find(params[:id])
+    @song.remove_file!
+    system "rm -rf public/data/#{@song.id.to_s}"
     @song.destroy
     flash[:notice] = "Successfully removed '#{@song.title}' "
-    redirect_to songs_path
+    redirect_to songs_view_path
   end
   
   # viewing results page
@@ -68,4 +75,5 @@ class SongsController < ApplicationController
       @songs = Songs.all
     end
   end
+
 end

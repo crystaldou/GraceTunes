@@ -1,0 +1,31 @@
+-# in app/views/songs/show.html.haml
+- if flash[:notice]
+  #notice.message{:class=> 'alert'}= flash[:notice]
+
+%div{:style=>'margin-left:25px; margin-right:25px', :class=>'well well-sm'}
+  %div{:class=>'jumbotron'}
+    %h3 #{@song.title}
+  %ul#details
+    %li
+      Artist:
+      = @song.artist
+    %li
+      Album:
+      = @song.album
+
+    %li 
+      Tags:
+      = @song.tags
+
+%div{:style=>'margin-right:25px'}
+  %div{:style=>'float:left'} 
+    = button_to 'Download', @link, :method => :get, :class=>'btn btn-success',  :style => 'margin-right:10px'
+
+  %div{:style=>'float:left'} 
+    = button_to 'Edit', edit_song_path(@song), :method => :get, :class=>'btn btn-warning',  :style => 'margin-right:10px'
+    
+  %div{:style=>'float:left'} 
+    = button_to 'Delete', song_path(@song), :method => :delete, :confirm => 'Are you sure?', :class=>'btn btn-danger', :style => 'margin-right:10px'
+
+  %div{:style=>'float:left'} 
+    = button_to 'Back to search bar', songs_path, :class=>'btn btn-primary'

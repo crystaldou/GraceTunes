@@ -13,6 +13,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails'
+  gem 'simplecov'
+  gem 'yomu'
 end
 
 group :test do
@@ -30,10 +32,13 @@ group :assets do
   gem 'sass-rails', '~> 3.2.6'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier'
+  gem 'less-rails'
+  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
 gem 'haml'
+gem 'carrierwave'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,14 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
   <title>Gracetunes</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="wrap">
 
-<%= yield %>
-
+      <!-- Begin page content -->
+   <div class="container">
+  <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+ 
+      <!-- Be sure to leave the brand out there if you want it shown -->
+      <a class="brand" href="#">GraceTunes</a>
+ 
+      <!-- Everything you want hidden at 940px or less, place within here -->
+      <div class="nav-collapse collapse">
+        <!-- .nav, .navbar-search, .navbar-form, etc -->
+        <ul class="nav">
+        <li><%= link_to "Browse Songs", songs_view_path %></li>
+        <li><%= link_to "Browse Sets" %></li>
+        <li><%= link_to "Add a song", new_song_path %></li>
+      </ul>
+      </div>
+ 
+    </div>
+  </div>
+</div>
+      <%= yield %>
+</div>
+</div>
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit"><a href="http://www.gracepointonline.org/pages/contact/">Contact Us </a>   &nbsp;  &nbsp; 
+                                     <a href="http://www.gracepointonline.org/pages/contact/">Report A Problem</a> 
+                                     <br>Gracepoint – Berkeley 1275 Harbor Bay Parkway Alameda, CA 94502</p>
+      </div>
+    </div>
 </body>
 </html>

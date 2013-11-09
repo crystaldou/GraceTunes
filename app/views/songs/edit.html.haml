@@ -1,24 +1,24 @@
 -# edit.html.haml using partial
-%link(rel="stylesheet" type="text/css" href="edit.css")
-%h3 Edit Existing Song
 
-= form_tag song_path(@song), :method => :put do
+%div{:style=>'margin-left:25px; margin-right:25px'}
+  %h3 Edit Existing Song
 
-  = label :song, :title, 'Title: '
-  = text_field :song, 'title'
-  %br
+  = form_tag song_path(@song), :method => :put do
 
-  = label :song, :artist, 'Artist: '
-  = text_field :song, 'artist'
-  %br
+    = label :song, :title, 'Title: '
+    = text_field :song, 'title'
+    %br
 
-  = label :song, :album, 'Album: '
-  = text_field :song, 'album'
-  %br
+    = label :song, :artist, 'Artist: '
+    = text_field :song, 'artist'
+    %br
 
-  = label :song, :tags, 'Tags: '
-  = text_field :song, 'tags'
-  %br
-  %br
+    = label :song, :album, 'Album: '
+    = text_field :song, 'album'
+    %br
 
-  = submit_tag 'Update Song Info', :id => 'submit_song'
+    = label :song, :tags, 'Tags: '
+    = text_field :song, 'tags'
+    %br
+    
+    = submit_tag 'Update Song Info', :id => 'submit_song', :class => 'btn btn-warning'

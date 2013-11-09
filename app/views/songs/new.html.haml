@@ -1,0 +1,23 @@
+%div{:style=>'margin-left:25px; margin-right:25px'}
+  %h1 Create New Song
+
+  = form_tag songs_path, :multipart => true do
+
+    = label :song, :title, 'Title: '
+    = text_field :song, 'title'
+    %br
+
+    = label :song, :artist, 'Artist: '
+    = text_field :song, 'artist'
+    %br
+
+    = label :song, :tags, 'Tags: '
+    = text_field :song, 'tags'
+    %br
+
+    = label :song, :file, 'Choose file: '
+    = file_field :song, 'file'
+    %br
+    %br
+
+    = submit_tag 'Save Changes', :id => 'submit_song', :class => 'btn btn-warning'
