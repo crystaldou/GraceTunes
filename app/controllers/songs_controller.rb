@@ -24,6 +24,8 @@ class SongsController < ApplicationController
 
   def create
     @song = Songs.create!(params[:song])
+    @song.lyrics = parse("public/#{@song.file}")
+    @song.save!
     flash[:notice] = "#{@song.title} was successfully created."
     redirect_to "/songs/#{@song.id.to_s}"
   end
@@ -107,25 +109,26 @@ class SongsController < ApplicationController
     @tags = {}
     @songs.each do |song|
       begin
-        @tags[song] = parse(song.tags)
+        @tags[song] = song.tags.split(", ")
       rescue
         raise ArgumentError, @tags
       end
   end
-    
-  end
-  
-  def parse text
-    return text.split(", ")
+
   end
 
-  def test
-    @texts = {}
-    Dir['public/songs/*'].each do |file|
-      yomu = Yomu.new file.to_s
-      @texts[file] = [ yomu.text.gsub(/^$\n/, ''),
-        yomu.text.split(/[\r\n]/).map{|l| line_remove(l.gsub(/[^[:ascii:]]/i,'').gsub(/\s+/, ' ').strip)}.join("\n").gsub(/^$\n/, '') ]
-    end
+  # def test
+  #   @texts = {}
+  #   Dir['public/songs/*'].each do |file|
+  #     yomu = Yomu.new file.to_s
+  #     @texts[file] = [ yomu.text.gsub(/^$\n/, ''),
+  #       yomu.text.split(/[\r\n]/).map{|l| line_remove(l.gsub(/[^[:ascii:]]/i,'').gsub(/\s+/, ' ').strip)}.join("\n").gsub(/^$\n/, '') ]
+  #   end
+  # end
+
+  def parse file
+    yomu = Yomu.new file
+    return yomu.text.split(/[\r\n]/).map{|l| line_remove(l.gsub(/[^[:ascii:]]/i,'').gsub(/\s+/, ' ').strip)}.join("\n").gsub(/^$\n/, '')
   end
 
   def line_remove line

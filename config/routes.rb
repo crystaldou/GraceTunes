@@ -56,7 +56,7 @@ Gracetunes::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  get '/songs/test', to: 'songs#test'
+  # get '/songs/test', to: 'songs#test'
   get '/songs/view', to: 'songs#view'
   resources :songs
   root :to => 'songs#index'

@@ -41,7 +41,7 @@ When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
   with_scope(parent) { When "#{step}:", table_or_string }
 end
 
-Given /the following songs exist/ do |songs_table| 
+Given /the following songs exist/ do |songs_table|
   songs_table.hashes.each do |song|
     Songs.create(song)
   end
@@ -63,6 +63,10 @@ end
 
 When /^(?:|I )search by "([^"]*)" with "([^"]*)"$/ do |field, value|
  visit songs_view_path(:search_type => field, :search_text => value)
+end
+
+When /^(?:|I )add a new song$/ do
+  visit new_song_path
 end
 
 When /^(?:|I )edit "([^"]*)"$/ do |song|
@@ -234,7 +238,7 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, pa
   end
 end
 
- 
+
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
@@ -248,8 +252,8 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   query = URI.parse(current_url).query
   actual_params = query ? CGI.parse(query) : {}
   expected_params = {}
-  expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')} 
-  
+  expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')}
+
   if actual_params.respond_to? :should
     actual_params.should == expected_params
   else

@@ -15,3 +15,11 @@
 /tmp
 
 /solr/data
+
+/coverage
+
+/public/data
+
+.DS_Store
+
+Gemfile.lock
