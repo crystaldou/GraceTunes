@@ -14,7 +14,7 @@ Feature: Add a song with title, artist, tag, and album fields
 	And I fill in "song_artist" with "Jon Ching"
 	And I fill in "song_album" with "Herp Derp"
 	And I fill in "song_tags" with "Alec, Hoey, Is, Awesome"
-	And I attach the file "~/lyrics.doc" to "song_file"
+	And I attach the file "lyrics.doc" to "song_file"
 	And I press "Save Changes"
 	Then I should see "Hello World was successfully created."
 

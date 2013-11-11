@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SongsController, :type => :controller do
   before :each do
-    @song = Songs.create({:title => "From the Inside Out", :tags => 'perseverance'})
+    @song = Songs.create({:title => "From the Inside Out", :tags => 'perseverance', :file => 'data/12/Mighty_To_Save.doc'})
   end
   
   describe "#index" do
@@ -49,7 +49,8 @@ describe SongsController, :type => :controller do
   
   describe '#create' do
     it 'should create a movie and redirect to show page' do
-      post :create
+      controller.stub!(:parse).and_return('')
+      post :create, :song => {:file => 'data/12/Mighty_To_Save.doc'}
       response.should redirect_to song_path(2)
     end
   end
