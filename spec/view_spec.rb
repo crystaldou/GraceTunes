@@ -19,16 +19,16 @@ describe SongsController, :type => :controller do
     end
     
     it 'blah2' do
-      get :view, {:search_type => 'Title'}
+      get :view, {:search_type => 'Title', :search_text => 'From the Inside Out'}
       response.should render_template :view
     end
     
     it 'blah3' do
-      get :view, {:search_type => 'Album'}
+      get :view, {:search_type => 'Album', :search_text => 'United We Stand'}
       response.should render_template :view
     end
     it 'blah4' do
-      get :view, {:search_type => 'Artist'}
+      get :view, {:search_type => 'Artist', :search_text => 'Hillsong United'}
       response.should render_template :view
     end
     
