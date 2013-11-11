@@ -15,7 +15,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'sunspot_solr', github: 'sunspot/sunspot', branch: 'master'
-  gem 'yomu'
 end
 
 group :test do
@@ -39,6 +38,7 @@ end
 
 gem 'jquery-rails'
 gem 'haml'
+gem 'yomu'
 gem 'sunspot_rails', github: 'sunspot/sunspot', branch: 'master'
 gem 'carrierwave'
 
