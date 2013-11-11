@@ -50,7 +50,7 @@ describe SongsController, :type => :controller do
   describe '#create' do
     it 'should create a movie and redirect to show page' do
       post :create
-      response.should redirect_to song_path, :id => 2
+      response.should redirect_to song_path(2)
     end
   end
 end
