@@ -100,7 +100,7 @@ class SongsController < ApplicationController
         elsif @type == "Album"
           @songs = Songs.where("album LIKE '%#{@text}%'")
         elsif @type == "Tags"
-          @songs = Songs.where("tags LIKE '%#{@text}%'")
+          @songs = Songs.where("tags LIKE '%#{@text.downcase}%'")
         end
       else
         @songs = Songs.all
