@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SongsController, :type => :controller do
   before :each do
-    @song = Songs.create({:title => "From the Inside Out"})
+    @song = Songs.create({:title => "From the Inside Out", :tags => 'perseverance'})
   end
   
   describe "#index" do
@@ -19,16 +19,16 @@ describe SongsController, :type => :controller do
     end
     
     it 'blah2' do
-      get :view, {:search_type => {:options => 'Title'}}
+      get :view, {:search_type => 'Title'}
       response.should render_template :view
     end
     
     it 'blah3' do
-      get :view, {:search_type => {:options => 'Album'}}
+      get :view, {:search_type => 'Album'}
       response.should render_template :view
     end
     it 'blah4' do
-      get :view, {:search_type => {:options => 'Artist'}}
+      get :view, {:search_type => 'Artist'}
       response.should render_template :view
     end
   end
@@ -48,9 +48,9 @@ describe SongsController, :type => :controller do
   end
   
   describe '#create' do
-    it 'should create a movie and redirect to index page' do
+    it 'should create a movie and redirect to show page' do
       post :create
-      response.should redirect_to songs_path
+      response.should redirect_to song_path, :id => 2
     end
   end
 end

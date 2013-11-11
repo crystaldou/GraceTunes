@@ -64,14 +64,14 @@ class SongsController < ApplicationController
     @type = params[:search_type]
     begin
       if params[:search_text]
-        if @type[:options] == "Title"
+        if @type == "Title"
           @search = Songs.search do
             fulltext params[:search_text] do
               fields(:title)
             end
           end
           @songs = @search.results
-        elsif @type[:options] == "Tags"
+        elsif @type == "Tags"
           @search = Songs.search do
             fulltext params[:search_text] do
               fields(:tags)
@@ -89,13 +89,13 @@ class SongsController < ApplicationController
     rescue
       if @type
         @text = params[:search_text]
-        if @type[:options] == "Title"
+        if @type == "Title"
           @songs = Songs.where("title LIKE '%#{@text}%'")
-        elsif @type[:options] == "Artist"
-          @songs = Songs.where(artist: @text)
-        elsif @type[:options] == "Album"
-          @songs = Songs.where(album: @text)
-        elsif @type[:options] == "Tags"
+        elsif @type == "Artist"
+          @songs = Songs.where("artist LIKE '%#{@text}%'")
+        elsif @type == "Album"
+          @songs = Songs.where("album LIKE '%#{@text}%'")
+        elsif @type == "Tags"
           @songs = Songs.where("tags LIKE '%#{@text}%'")
         end
       else

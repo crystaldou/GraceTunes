@@ -45,13 +45,6 @@ Scenario:
 	When I press "submit_song"
 	And I should see "Song has been successfully edited"
 
-Scenario: 
-	When I edit "Commission My Soul" 
-	When I press "upload_lyrics" 
-	And I should see "Upload Window" 
-	When I press "submit_song" 
-	And I should see "Song has been successfully edited"
-	Then the "song_lyrics" field should contain something
 
 
 
