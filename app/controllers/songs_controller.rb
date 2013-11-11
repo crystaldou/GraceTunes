@@ -92,7 +92,7 @@ class SongsController < ApplicationController
     #      end
     #    rescue
       if @type
-        @text = params[:search_text]
+        @text = params[:search_text].split.map(&:capitalize).join(' ')
         if @type == "Title"
           @songs = Songs.where("title LIKE '%#{@text}%'")
         elsif @type == "Artist"
