@@ -74,7 +74,26 @@ class SongsController < ApplicationController
     @texts = {}
     Dir['public/songs/*'].each do |file|
       yomu = Yomu.new file.to_s
-      @texts[file] = [ yomu.text, yomu.text.gsub(/^$\n/, '') ]
+      @texts[file] = [ yomu.text.gsub(/^$\n/, ''),
+        yomu.text.split(/[\r\n]/).map{|l| line_remove(l.gsub(/[^[:ascii:]]/i,'').gsub(/\s+/, ' ').strip)}.join("\n").gsub(/^$\n/, '') ]
     end
+  end
+
+  def line_remove line
+    regex = [ /^(\(\s?)?(b|bridge|chordsheet|c|chorus|coda|e||ending|f|full chorus|i|inst|instrumental|intro|p|pre-chorus|r|repeat|v|verse)?(\s?(\w|\d+))?(\s?:)?(\s?\d+\s?(x|times))?(\s?(x|times)\s?\d+)?(\)\s?)?$/i,
+              /^(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?(\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?)*$/,
+              /^(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?\s/,
+              /\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?$/,
+              /\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?\s/,
+              /\d?\d\s?(\/|\\)\s?\d?\d\s?(\/|\\)\s?\d\d(\d\d)?/,
+              /page(\s?\d+)?/i,
+              /ccli/i,
+              /^[^\w]+$/ ]
+    regex.each do |r|
+      if r =~ line
+        return ''
+      end
+    end
+    return line
   end
 end
