@@ -1,0 +1,8 @@
+- @texts.each do |file, texts|
+  = file
+  %br
+  %div{:style => 'display: inline-flex'}
+    %pre{:style => 'display: inline-block'}= texts[0]
+    %pre{:style => 'display: inline-block'}= texts[1]
+  %br
+%pre= "Hello World"

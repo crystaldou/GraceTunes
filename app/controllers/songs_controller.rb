@@ -1,3 +1,5 @@
+require 'yomu'
+
 class SongsController < ApplicationController
 
   # viewing a single song page
@@ -5,7 +7,7 @@ class SongsController < ApplicationController
     id = params[:id] # retrieve movie ID from URI route
     @song = Songs.find(id) # look up movie by unique ID
 
-    if @song.file  
+    if @song.file
       @link = @song.file.to_s
     else
       @link = "/songs/#{@song.id.to_s}"
@@ -54,7 +56,7 @@ class SongsController < ApplicationController
     flash[:notice] = "Successfully removed '#{@song.title}' "
     redirect_to songs_view_path
   end
-  
+
   # viewing results page
   def view
     # @songs = list / something iterable.
@@ -117,4 +119,30 @@ class SongsController < ApplicationController
     return text.split(", ")
   end
 
+  def test
+    @texts = {}
+    Dir['public/songs/*'].each do |file|
+      yomu = Yomu.new file.to_s
+      @texts[file] = [ yomu.text.gsub(/^$\n/, ''),
+        yomu.text.split(/[\r\n]/).map{|l| line_remove(l.gsub(/[^[:ascii:]]/i,'').gsub(/\s+/, ' ').strip)}.join("\n").gsub(/^$\n/, '') ]
+    end
+  end
+
+  def line_remove line
+    regex = [ /^(\(\s?)?(b|bridge|chordsheet|c|chorus|coda|e||ending|f|full chorus|i|inst|instrumental|intro|p|pre-chorus|r|repeat|v|verse)?(\s?(\w|\d+))?(\s?:)?(\s?\d+\s?(x|times))?(\s?(x|times)\s?\d+)?(\)\s?)?$/i,
+              /^(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?(\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?)*$/,
+              /^(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?\s/,
+              /\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?$/,
+              /\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?\s(\(\s?)?[A-G](#|b)?[M|m]?s?\d?\d?(\s?(\/|\\)\s?[A-G](#|b)?[M|m]?s?\d?\d?)?(\s?\))?\s/,
+              /\d?\d\s?(\/|\\)\s?\d?\d\s?(\/|\\)\s?\d\d(\d\d)?/,
+              /page(\s?\d+)?/i,
+              /ccli/i,
+              /^[^\w]+$/ ]
+    regex.each do |r|
+      if r =~ line
+        return ''
+      end
+    end
+    return line
+  end
 end
