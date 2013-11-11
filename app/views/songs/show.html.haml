@@ -28,4 +28,4 @@
     = button_to 'Delete', song_path(@song), :method => :delete, :confirm => 'Are you sure?', :class=>'btn btn-danger', :style => 'margin-right:10px'
 
   %div{:style=>'float:left'} 
-    = button_to 'Back to search bar', songs_path, :class=>'btn btn-primary'
+    = button_to 'Back to search bar', root_url, :method => :get, :class=>'btn btn-primary'
