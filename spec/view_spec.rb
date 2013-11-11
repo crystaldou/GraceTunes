@@ -31,6 +31,11 @@ describe SongsController, :type => :controller do
       get :view, {:search_type => 'Artist'}
       response.should render_template :view
     end
+    
+    it 'blah5' do
+      get :view
+      response.should render_template :view
+    end
   end
   
   describe '#update' do
@@ -52,6 +57,19 @@ describe SongsController, :type => :controller do
       controller.stub!(:parse).and_return('')
       post :create, :song => {:file => 'data/12/Mighty_To_Save.doc'}
       response.should redirect_to song_path(2)
+    end
+  end
+    
+  describe '#destroy' do
+    it 'should destroy' do
+      delete :destroy, :id => @song.id
+      response.should redirect_to songs_view_path
+    end
+  end
+  
+  describe '#line_remove' do
+    it 'should lineremove' do
+      controller.line_remove('')
     end
   end
 end

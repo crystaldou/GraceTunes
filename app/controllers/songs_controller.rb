@@ -66,31 +66,31 @@ class SongsController < ApplicationController
     # suggestion: for the file - instead of storing it in our app, could we link them to a dropbox or something
     # from where they can download the song?; so the hash would store the link.
     @type = params[:search_type]
-    begin
-      if params[:search_text]
-        if @type == "Title"
-          @search = Songs.search do
-            fulltext params[:search_text] do
-              fields(:title)
-            end
-          end
-          @songs = @search.results
-        elsif @type == "Tags"
-          @search = Songs.search do
-            fulltext params[:search_text] do
-              fields(:tags)
-            end
-          end
-        else
-          @search = Songs.search do
-            fulltext params[:search_text]
-          end
-          @songs = @search.results
-        end
-      else
-        @songs = Songs.all
-      end
-    rescue
+    # begin
+    #      if params[:search_text]
+    #        if @type == "Title"
+    #          @search = Songs.search do
+    #            fulltext params[:search_text] do
+    #              fields(:title)
+    #            end
+    #          end
+    #          @songs = @search.results
+    #        elsif @type == "Tags"
+    #          @search = Songs.search do
+    #            fulltext params[:search_text] do
+    #              fields(:tags)
+    #            end
+    #          end
+    #        else
+    #          @search = Songs.search do
+    #            fulltext params[:search_text]
+    #          end
+    #          @songs = @search.results
+    #        end
+    #      else
+    #        @songs = Songs.all
+    #      end
+    #    rescue
       if @type
         @text = params[:search_text]
         if @type == "Title"
@@ -105,13 +105,13 @@ class SongsController < ApplicationController
       else
         @songs = Songs.all
       end
-    end
+    #end
     @tags = {}
     @songs.each do |song|
       begin
         @tags[song] = song.tags.split(", ")
       rescue
-        raise ArgumentError, @tags
+        @tags[song] = []
       end
   end
 
