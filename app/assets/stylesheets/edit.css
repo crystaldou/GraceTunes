@@ -12,12 +12,12 @@ div#main {
 }
 a {
   background: transparent;
-  color: maroon;
+  color: black;
   text-decoration: underline;
   font-weight: bold;
 }
 h1 {
-  color: maroon;
+  color: rgb(60, 58, 111);
   font-size: 150%;
   font-style: italic;
   display: block;
@@ -72,3 +72,5 @@ form label {
     margin-right: auto;
     display: block;
 }
+
+

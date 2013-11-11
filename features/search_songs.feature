@@ -24,7 +24,9 @@ Background: songs have been added to database
 	
 Scenario: search results to songs with title 'From the Inside Out'
 	When I search by "Title" with "Inside Out"
-	Then I should see "transformation, changed lives, failures"
+	Then I should see "transformation"
+	Then I should see "changed lives"
+	Then I should see "failures"
 	Then I should see "From the Inside Out" 
 	Then I should see "Hillsong United"
 
@@ -39,7 +41,7 @@ Scenario: search results to songs with album 'Homemade Worship By Handmade Peopl
 	Then I should see "Desert Soul"
 	
 Scenario: search results to songs with tag 'perseverance'
-  When I search by "tags" with "perseverance"
-  Then I should see "Give me Faith"
+  When I search by "Tags" with "perseverance"
+  Then I should see "Give Me Faith"
   Then I should see "Elevation Worship"
 	

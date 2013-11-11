@@ -8,7 +8,7 @@ Feature: Add a song with title, artist, tag, and album fields
 
 	Scenario: 
 	
-	When I click "Add Songs"
+	When I follow "Add a song"
 	Then I should see "Upload Window"
 	When I attach the file "/home/saasbook/Desktop/CS/GraceTunes/lyrics.pdf" to "song_lyrics"
 	Then I should be on the edit page

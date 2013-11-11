@@ -14,6 +14,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'sunspot_solr', github: 'sunspot/sunspot', branch: 'master'
   gem 'yomu'
 end
 
@@ -38,6 +39,7 @@ end
 
 gem 'jquery-rails'
 gem 'haml'
+gem 'sunspot_rails', github: 'sunspot/sunspot', branch: 'master'
 gem 'carrierwave'
 
 # To use ActiveModel has_secure_password
