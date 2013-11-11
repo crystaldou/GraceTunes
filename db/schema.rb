@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131111083806) do
+ActiveRecord::Schema.define(:version => 20131111103909) do
 
   create_table "songs", :force => true do |t|
     t.string   "title"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20131111083806) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "file"
-    t.string   "lyrics"
+    t.text     "lyrics"
   end
 
 end
