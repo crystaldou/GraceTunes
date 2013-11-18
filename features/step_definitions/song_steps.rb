@@ -47,7 +47,19 @@ Given /the following songs exist/ do |songs_table|
   end
 end
 
+Given /the following playlists exist/ do |playlist_table|
+  playlist_table.hashes.each do |playlist|
+    Playlists.create(playlist)
+  end
+end
 
+Given /the following associations exist/ do |table|
+  table.hashes.each do |element|
+    playlist = Playlists.where(name: element['playlist'])
+    song = Songs.where(title: element['song'])
+    playlist.songs << song
+  end
+end
 
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)

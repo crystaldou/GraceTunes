@@ -3,7 +3,7 @@
 %div{:style=>'margin-left:25px; margin-right:25px'}
   %h3 Edit Existing Song
 
-  = form_tag song_path(@song), :method => :put do
+  = form_tag song_path(@song), :multipart => true, :method => :put do
 
     = label :song, :title, 'Title: '
     = text_field :song, 'title'
@@ -19,6 +19,11 @@
 
     = label :song, :tags, 'Tags: '
     = text_field :song, 'tags'
+    %br
+    
+    = label :song, :file, 'Attach Lyrics: '
+    = file_field :song, 'file'
+    %br
     %br
     
     = submit_tag 'Update Song Info', :id => 'submit_song', :class => 'btn btn-warning'

@@ -15,7 +15,6 @@ class SongsController < ApplicationController
   end
 
   def index
-    @a = "index"
   end
 
   def new
@@ -44,6 +43,8 @@ class SongsController < ApplicationController
       raise "Cannot leave song field empty"
     else
       @song.update_attributes!(params[:song])
+      @song.lyrics = parse("public/#{@song.file}").downcase
+      @song.save!
       flash[:notice] = "Song has been successfully edited"
       redirect_to "/songs/#{@song.id.to_s}"
     end
@@ -101,6 +102,8 @@ class SongsController < ApplicationController
           @songs = Songs.where("album LIKE '%#{@text}%'")
         elsif @type == "Tags"
           @songs = Songs.where("tags LIKE '%#{@text.downcase}%'")
+        elsif @type == "Lyrics"
+          @songs = Songs.where("lyrics LIKE '%#{@text.downcase}%'")
         end
       else
         @songs = Songs.all

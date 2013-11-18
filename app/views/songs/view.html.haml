@@ -1,7 +1,7 @@
 -#  This file is app/views/songs/view.html.haml
 %h1 Results
 = form_tag songs_view_path, :method => :get do
-  = select_tag :search_type, options_for_select([["Title","Title"], ["Artist", "Artist"], ["Album" ,"Album"], ["Tags","Tags"]], params[:search_type]), :class => 'selectpicker'
+  = select_tag :search_type, options_for_select([["Title","Title"], ["Artist", "Artist"], ["Album" ,"Album"], ["Tags","Tags"], ["Lyrics", "Lyrics"]], params[:search_type]), :class => 'selectpicker'
   = text_field_tag 'search_text', nil, :placeholder => 'Enter text here', :style => 'width: 500px'
   = submit_tag "Search", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px'
   
@@ -23,6 +23,6 @@
           %td= song.album
           %td
             - @tags[song].each do |tag|
-              =button_tag tag
+              =button_tag tag, :style => "cursor: text"
           %td= link_to "View", song_path(song)
           %td= link_to "Edit", edit_song_path(song)

@@ -3,6 +3,6 @@
 %img(src="/images/GraceTunes_logo.png" class='center' style="margin-top:150px")
 
 = form_tag songs_view_path, :method => :get, :style => "margin-left: auto; margin-right: auto; width: 30%" do
-  = select_tag :search_type, options_for_select([["Title","Title"], ["Artist", "Artist"], ["Album" ,"Album"], ["Tags","Tags"]]), :id => 'search_text'
+  = select_tag :search_type, options_for_select([["Title","Title"], ["Artist", "Artist"], ["Album" ,"Album"], ["Tags","Tags"], ["Lyrics", "Lyrics"]]), :id => 'search_text'
   = text_field_tag 'search_text', nil, :placeholder => 'Enter text here'
   = submit_tag "Search", :class => 'btn btn-primary btn-lg btn-block'
