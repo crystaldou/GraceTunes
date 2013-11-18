@@ -13,27 +13,19 @@ Background: songs have been added to database, playlists have been added to data
   	| From the Inside Out     | Hillsong United            | transformation, changed lives, failures  | United We Stand                     | |
   	| Glorious Day            | Casting Crowns             | salvation, rapture, where'd everyone go? | Until The Whole World Hears         | |
   	| Build Your Kingdom Here | Rend Collective Experiment | gospel, kingdom, church, on fire         | Homemade Worship By Handmade People | |
+  	
+  And I am on the playlist page
   
-  
-  	Given the following playlists exist:
-  	| name                   | 
-  	| SWS11172013            |
-  	| SWS11102013            |
-  	
-  	
-  	Given the following associations exist:
-  	| playlist               | song                       |
-  	| SWS11172013            | Your Love Never Fails      |
-  	| SWS11172013            | Give Me Faith              |
-  	| SWS11172013            | Glorious Day               |
-  	
-    And I am on the playlists page
-    
-Scenario: see the songs in a playlist called "SWS11172013"
-  When I visit "SWS11172013"
-  Then I should see "Your Love Never Fails"
-  Then I should see "Give Me Faith"
-  Then I should see "Glorious Day"
-  Then I should see "faith"
-  Then I should see "love"
-  Then I should not see "From the Inside Out"
+Scenario: create playlist
+  When I add a new playlist
+  I should see "Create new playlist"
+	When I fill in "playlist_title" with "SWS11132013"
+	And I press "Save Changes"
+	Then I should see "Hello World was successfully created."
+	
+Scenario: add songs to playlists
+  Given I am on the view page
+  When I add "Your Love Never Fails" to playlist
+  Then I should see "SWS11132013"
+  When I follow "add to playlist"
+  Then I should see "Your Love Never Fails added"
