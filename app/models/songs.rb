@@ -4,6 +4,10 @@ class Songs < ActiveRecord::Base
   # searchable :auto_index => false do 
   #     text :title, :tags
   #   end
+  include PgSearch
+  pg_search_scope :search_lyrics,
+    :against => [:lyrics],
+    :using => [:tsearch, :dmetaphone]
   attr_accessible :title, :artist, :album, :tags, :file, :lyrics
   mount_uploader :file, FileUploader
 end
