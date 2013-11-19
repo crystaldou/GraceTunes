@@ -60,5 +60,8 @@ Gracetunes::Application.routes.draw do
   get '/songs/view', to: 'songs#view'
   resources :songs
   root :to => 'songs#index'
-
+  
+  match "/user/edit" => "sessions#edit"
+  match "/auth/google_oauth2/callback" => "sessions#create"
+  match "/signout" => "sessions#destroy", :as  => :signout
 end

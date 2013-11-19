@@ -4,6 +4,7 @@ class Songs < ActiveRecord::Base
   # searchable :auto_index => false do 
   #     text :title, :tags
   #   end
+  has_and_belongs_to_many :playlists
   include PgSearch
   pg_search_scope :search_lyrics,
     :against => :lyrics,

@@ -42,6 +42,7 @@ gem 'haml'
 gem 'yomu'
 gem 'sunspot_rails', github: 'sunspot/sunspot', branch: 'master'
 gem 'carrierwave'
+gem 'omniauth-google-oauth2'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

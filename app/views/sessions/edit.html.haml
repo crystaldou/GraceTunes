@@ -1,0 +1,16 @@
+-# edit.html.haml using partial
+
+%div{:style=>'margin-left:25px; margin-right:25px'}
+  %h3 Account Information
+
+  = form_tag '/', :method => :put do
+
+    = label :user, :name, 'Name: '
+    = text_field_tag :user , current_user.name
+    %br
+
+    = label :user, :admin_password, 'Admin_password: '
+    = password_field_tag :admin_pass
+    %br
+
+    = submit_tag 'Update User Info', :id => 'submit_user', :class => 'btn btn-warning'

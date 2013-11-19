@@ -15,6 +15,17 @@ class SongsController < ApplicationController
   end
 
   def index
+    #raise ArgumentError, current_user
+    if request.put?
+      current_user.name = params['user']
+      if params["admin_pass"] == "koinonia"
+        current_user.admin = true
+        flash[:notice] = "Admin created"
+      else 
+        flash[:notice] = "Wrong admin password"
+      end
+      current_user.save!
+    end
   end
 
   def new

@@ -33,11 +33,26 @@
       <div class="nav-collapse collapse">
         <!-- .nav, .navbar-search, .navbar-form, etc -->
         <ul class="nav">
-        <li><%= link_to "Browse Songs", songs_view_path %></li>
-        <li><%= link_to "Browse Sets" %></li>
-        <li><%= link_to "Add a song", new_song_path,:id => "AddSongs" %></li>
-      </ul>
+          <li><%= link_to "Browse Songs", songs_view_path %></li>
+          <li><%= link_to "Browse Sets" %></li>
+          <li><%= link_to "Add a song", new_song_path,:id => "AddSongs" %></li>
+        </ul>
+        <ul class="nav" style="float:right">
+          <li><% if current_user %>
+            <% if current_user.admin? %>
+              <h5>Welcome <%= current_user.name + " Admin" %></h5>
+            <% else %>
+              <h5>Welcome <%= current_user.name %></h5>
+              <li><%= link_to "Make Admin", '/user/edit'%>
+            <%end%>
+            <li><%= link_to "Sign out", '/signout' %></li>
+          <% else %>
+            <%= link_to "Sign in", '/auth/google_oauth2'%>
+          <% end %> 
+          </li>
+        </ul>
       </div>
+
  
     </div>
   </div>
