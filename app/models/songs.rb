@@ -6,8 +6,8 @@ class Songs < ActiveRecord::Base
   #   end
   include PgSearch
   pg_search_scope :search_lyrics,
-    :against => [:lyrics],
-    :using => [:tsearch, :dmetaphone]
+    :against => :lyrics,
+    :using => :tsearch
   attr_accessible :title, :artist, :album, :tags, :file, :lyrics
   mount_uploader :file, FileUploader
 end
