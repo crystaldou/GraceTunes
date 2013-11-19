@@ -7,7 +7,9 @@ class Songs < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search_lyrics,
     :against => :lyrics,
-    :using => :tsearch
+    :using => {
+      :tsearch => {:dictionary => "english", :any_word => "true"}
+    }
   attr_accessible :title, :artist, :album, :tags, :file, :lyrics
   mount_uploader :file, FileUploader
 end
