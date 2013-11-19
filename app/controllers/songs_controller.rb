@@ -78,7 +78,7 @@ class SongsController < ApplicationController
       elsif @type == "Tags"
         @songs = Songs.where("tags LIKE '%#{@text.downcase}%'")
       elsif @type == "Lyrics"
-        if !ActiveRecord::Base.connection.instance_values["config"][:adapter] == "mysql"
+        if ActiveRecord::Base.connection.instance_values["config"][:adapter] == "pg"
           @songs = Songs.search_lyrics(@text.downcase)
         else
           @songs = Songs.where("lyrics LIKE '%#{@text.downcase}%'")
