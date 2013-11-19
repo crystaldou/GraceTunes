@@ -82,7 +82,6 @@ class SongsController < ApplicationController
         @songs = Songs.search_lyrics(@text.downcase)
         #else
          # @songs = Songs.where("lyrics LIKE '%#{@text.downcase}%'")
-        end
       end
     else
       @songs = Songs.all
