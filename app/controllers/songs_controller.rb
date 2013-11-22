@@ -15,8 +15,6 @@ class SongsController < ApplicationController
   end
 
   def index
-    @play = Playlist.find(1)
-    raise ArgumentError, @play.songss
     if request.put?
       current_user.name = params['user']
       if params["admin_pass"] == "koinonia"
