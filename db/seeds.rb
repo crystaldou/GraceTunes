@@ -23,3 +23,9 @@ Songs.destroy_all
 songs.each do |song|
   Songs.create!(song)
 end
+
+playlists = [{:name => 'SWS11132'}]
+playlists.each do |playlist|
+  Playlist.create!(playlist)
+end
+Playlist.find(1).songss << Songs.find(1)

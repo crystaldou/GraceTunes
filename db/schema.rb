@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(:version => 20131119234211) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "song_playlists", :force => true do |t|
+  create_table "playlists_songs", :force => true do |t|
     t.integer "playlist_id"
-    t.integer "song_id"
+    t.integer "songs_id"
   end
 
   create_table "songs", :force => true do |t|

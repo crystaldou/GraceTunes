@@ -35,7 +35,9 @@
         <ul class="nav">
           <li><%= link_to "Browse Songs", songs_view_path %></li>
           <li><%= link_to "Browse Sets" %></li>
-          <li><%= link_to "Add a song", new_song_path,:id => "AddSongs" %></li>
+          <% if current_user.try(:admin?) %>
+            <li><%= link_to "Add a song", new_song_path,:id => "AddSongs" %></li>
+          <%end%>
         </ul>
         <ul class="nav" style="float:right">
           <li><% if current_user %>

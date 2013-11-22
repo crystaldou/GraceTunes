@@ -1,4 +1,6 @@
 -#  This file is app/views/songs/view.html.haml
+= javascript_include_tag "/songs/blah.js"
+
 %h1 Results
 = form_tag songs_view_path, :method => :get do
   = select_tag :search_type, options_for_select([["Title","Title"], ["Artist", "Artist"], ["Album" ,"Album"], ["Tags","Tags"], ["Lyrics", "Lyrics"]], params[:search_type]), :class => 'selectpicker'

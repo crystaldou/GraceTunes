@@ -1,4 +1,6 @@
 %link(rel="stylesheet" type="text/css" href="/songs/edit.css")
+- if flash[:notice]
+  #notice.message{:class=> 'alert'}= flash[:notice]
 
 %img(src="/images/GraceTunes_logo.png" class='center' style="margin-top:150px")
 

@@ -6,9 +6,9 @@ class CreatePlaylists < ActiveRecord::Migration
       t.timestamps
     end
     
-    create_table :song_playlists do |t|
+    create_table :playlists_songs do |t|
       t.belongs_to :playlist
-      t.belongs_to :song
+      t.belongs_to :songs
     end
   
   end

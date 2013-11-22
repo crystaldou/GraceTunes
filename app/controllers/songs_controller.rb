@@ -15,7 +15,8 @@ class SongsController < ApplicationController
   end
 
   def index
-    #raise ArgumentError, current_user
+    @play = Playlist.find(1)
+    raise ArgumentError, @play.songss
     if request.put?
       current_user.name = params['user']
       if params["admin_pass"] == "koinonia"
@@ -30,6 +31,9 @@ class SongsController < ApplicationController
 
   def new
     # default: render 'new' template
+    if not current_user.try(:admin?)
+      raise ArgumentError, "You are not an admin"
+    end
   end
 
   def create
@@ -105,7 +109,7 @@ class SongsController < ApplicationController
       rescue
         @tags[song] = []
       end
-  end
+    end
 
   end
 
