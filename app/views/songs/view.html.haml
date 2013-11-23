@@ -15,6 +15,7 @@
         %th Artist
         %th Album
         %th Tags
+        %th Add to Playlist
         %th View
         %th Edit
     %tbody
@@ -26,5 +27,6 @@
           %td
             - @tags[song].each do |tag|
               =button_tag tag, :style => "cursor: text"
+          %td= link_to "Add"
           %td= link_to "View", song_path(song)
           %td= link_to "Edit", edit_song_path(song)
