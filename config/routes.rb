@@ -1,4 +1,6 @@
 Gracetunes::Application.routes.draw do
+  get "playlists/view"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -59,6 +61,7 @@ Gracetunes::Application.routes.draw do
   # get '/songs/test', to: 'songs#test'
   get '/songs/view', to: 'songs#view'
   resources :songs
+  resources :playlist
   root :to => 'songs#index'
   
   match "/user/edit" => "sessions#edit"
