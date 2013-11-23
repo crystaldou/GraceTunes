@@ -6,7 +6,7 @@
   = select_tag :search_type, options_for_select([["Title","Title"], ["Artist", "Artist"], ["Album" ,"Album"], ["Tags","Tags"], ["Lyrics", "Lyrics"]], params[:search_type]), :class => 'selectpicker'
   = text_field_tag 'search_text', nil, :placeholder => 'Enter text here', :style => 'width: 500px'
   = submit_tag "Search", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px'
-  
+
 %div
   %table#songs{:class => "table table-striped"}
     %thead
@@ -15,8 +15,8 @@
         %th Artist
         %th Album
         %th Tags
-        %th View
-        %th Edit
+        %th
+        %th
     %tbody
       - @songs.each do |song|
         %tr
