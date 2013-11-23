@@ -61,6 +61,7 @@ Gracetunes::Application.routes.draw do
   # get '/songs/test', to: 'songs#test'
   get '/songs/view', to: 'songs#view'
   resources :songs
+  resources :playlist
   root :to => 'songs#index'
   
   match "/user/edit" => "sessions#edit"

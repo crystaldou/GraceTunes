@@ -1,0 +1,13 @@
+-#  This file is app/views/songs/view.html.haml
+  
+%div
+  %table#playlist{:class => "table table-striped"}
+    %thead
+      %tr
+        %th Name
+        %th Author
+    %tbody
+      - @playlists.each do |playlist|
+        %tr
+          %td= playlist.name
+          %td= link_to "View", playlist_path(playlist)

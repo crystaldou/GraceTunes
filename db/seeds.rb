@@ -28,4 +28,4 @@ playlists = [{:name => 'SWS11132'}]
 playlists.each do |playlist|
   Playlist.create!(playlist)
 end
-Playlist.find(1).songss << Songs.find(1)
+Playlist.find(1).songss << Songs.where(:title => 'Your Love Never Fails')
