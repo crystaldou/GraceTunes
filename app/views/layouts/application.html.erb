@@ -25,16 +25,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
- 
+
       <!-- Be sure to leave the brand out there if you want it shown -->
       <a class="brand" href="/">GraceTunes</a>
- 
+
       <!-- Everything you want hidden at 940px or less, place within here -->
       <div class="nav-collapse collapse">
         <!-- .nav, .navbar-search, .navbar-form, etc -->
         <ul class="nav">
           <li><%= link_to "Browse Songs", songs_view_path %></li>
-          <li><%= link_to "Browse Sets", '/playlists' %></li>
+          <li><%= link_to "Browse Sets", '/playlist' %></li>
           <% if current_user.try(:admin?) %>
             <li><%= link_to "Add a song", new_song_path,:id => "AddSongs" %></li>
           <%end%>
@@ -50,12 +50,12 @@
             <li><%= link_to "Sign out", '/signout' %></li>
           <% else %>
             <%= link_to "Sign in", '/auth/google_oauth2'%>
-          <% end %> 
+          <% end %>
           </li>
         </ul>
       </div>
 
- 
+
     </div>
   </div>
 </div>
@@ -64,8 +64,8 @@
 </div>
     <div id="footer">
       <div class="container">
-        <p class="text-muted credit"><a href="http://www.gracepointonline.org/pages/contact/">Contact Us </a>   &nbsp;  &nbsp; 
-                                     <a href="http://www.gracepointonline.org/pages/contact/">Report A Problem</a> 
+        <p class="text-muted credit"><a href="http://www.gracepointonline.org/pages/contact/">Contact Us </a>   &nbsp;  &nbsp;
+                                     <a href="http://www.gracepointonline.org/pages/contact/">Report A Problem</a>
                                      <br>Gracepoint – Berkeley 1275 Harbor Bay Parkway Alameda, CA 94502</p>
       </div>
     </div>
