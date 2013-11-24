@@ -31,7 +31,9 @@ end
 
 songs_in_playlists = [[Songs.where(:title => 'Your Love Never Fails'), Songs.where(:title => 'Give Me Faith'),
                        Songs.where(:title => 'From the Inside Out'), Songs.where(:title => 'Glorious Day'),
-                       Songs.where(:title => 'Build Your Kingdom Here'), Songs.where(:title => 'Desert Soul')],
+                       Songs.where(:title => 'Build Your Kingdom Here'), Songs.where(:title => 'Desert Soul'),
+                       Songs.where(:title => '10,000 Reasons'), Songs.where(:title => 'The Heart of Worship'),
+                       Songs.where(:title => 'God Is Able'), Songs.where(:title => 'Commission My Soul')],
                       [Songs.where(:title => 'Your Love Never Fails'), Songs.where(:title => '10,000 Reasons'),
                        Songs.where(:title => 'God Is Able')]]
 p_id = 1
