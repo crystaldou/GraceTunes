@@ -2,16 +2,19 @@
 
 %h1= @playlist.name
   
-%div
-  %table#songs{:class => "table table-striped"}
+%div{:style => 'float:left'}
+  %table#playlists{:class => "table table-striped"}
     %thead
       %tr
         %th Title
         %th Artist
         %th Album
-        %th Tags
-        %th
-        %th
-    %tbody#song_list
-      = render :collection => @songs, :partial => 'songs/song'
+    %tbody#playlist_list
+      -@songs.each do |song|
+        %tr{:id => "song_#{song.id}"}
+          %td= song.title
+          %td= song.artist
+          %td= song.album
 
+%div
+  blah

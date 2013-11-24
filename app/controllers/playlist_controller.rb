@@ -1,11 +1,11 @@
 class PlaylistController < ApplicationController
   # viewing all playlists
   def index
-    if not current_user.nil?
-      @playlists = Playlist.where(:user_id => current_user.uid)
-    else
+    #if not current_user.nil?
+    #  @playlists = Playlist.where(:user_id => current_user.uid)
+    #else
       @playlists = Playlist.all
-    end
+    #end
     @song_preview = {}
     @playlists.each do |playlist|
       @song_preview[playlist] = ""
@@ -23,7 +23,7 @@ class PlaylistController < ApplicationController
       end
     end
   end
-  def create
+  def new
     @playlists = Playlist.create!(params[:playlist])
     flash[:notice] = "Created empty playlist"
     redirect_to playlist_path
@@ -35,4 +35,18 @@ class PlaylistController < ApplicationController
     redirect_to playlist_path
   end
 
+  def show
+    id = params[:id]
+    @playlist = Playlist.find(id)
+    
+    @songs = @playlist.songss
+    @tags = {}
+    @songs.each do |song|
+      begin
+        @tags[song] = songs.tags.split(", ")
+      rescue
+        @tags[song] = []
+      end
+    end
+  end
 end

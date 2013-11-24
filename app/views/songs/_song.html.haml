@@ -5,5 +5,9 @@
   %td
     - @tags[song].each do |tag|
       =button_tag tag, :style => "cursor: text"
+  %td
+    = form_tag songs_view_path, :method => :post do
+      = select_tag :search_type, options_for_select([Playlist.all], params[:search_type]), :class => 'selectpicker'
+      = submit_tag "Add", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px'
   %td= link_to "View", song_path(song)
   %td= link_to "Edit", edit_song_path(song)

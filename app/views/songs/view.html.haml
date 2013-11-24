@@ -2,11 +2,13 @@
 = javascript_include_tag "/songs/blah.js"
 
 %h1 Results
-= form_tag songs_view_path, :method => :get do
+= form_tag songs_view_path, :remote => true, :method => :get do
   = select_tag :search_type, options_for_select([["Title","Title"], ["Artist", "Artist"], ["Album" ,"Album"], ["Tags","Tags"], ["Lyrics", "Lyrics"]], params[:search_type]), :class => 'selectpicker'
   = text_field_tag 'search_text', nil, :placeholder => 'Enter text here', :style => 'width: 500px'
   = submit_tag "Search", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px'
   
+:javascript
+  function add() { alert("blah")}
 %div
   %table#songs{:class => "table table-striped"}
     %thead
@@ -19,16 +21,7 @@
         %th Edit
     %tbody
       - @songs.each do |song|
-        %tr
-          %td= song.title
-          %td= song.artist
-          %td= song.album
-          %td
-            - @tags[song].each do |tag|
-              =button_tag tag, :style => "cursor: text"
-          %td
-            = form_tag songs_view_path, :method => :post do
-              = select_tag :search_type, options_for_select([Playlist.all], params[:search_type]), :class => 'selectpicker'
-              = submit_tag "Add", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px'
-          %td= link_to "View", song_path(song)
-          %td= link_to "Edit", edit_song_path(song)
+        = render :collection => @songs, :partial => 'songs/song'
+
+  
+  
