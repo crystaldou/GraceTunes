@@ -28,8 +28,16 @@ playlists = [{:name => 'SWS111312'}, {:name => 'SWS112012'}]
 playlists.each do |playlist|
   Playlist.create!(playlist)
 end
-Playlist.find(1).songss << Songs.where(:title => 'Your Love Never Fails')
-Playlist.find(1).songss << Songs.where(:title => 'Give Me Faith')
-Playlist.find(1).songss << Songs.where(:title => 'From the Inside Out')
-Playlist.find(2).songss << Songs.where(:title => 'Glorious Day')
-Playlist.find(2).songss << Songs.where(:title => 'Build Your Kingdom Here')
+
+songs_in_playlists = [[Songs.where(:title => 'Your Love Never Fails'), Songs.where(:title => 'Give Me Faith'),
+                       Songs.where(:title => 'From the Inside Out'), Songs.where(:title => 'Glorious Day'),
+                       Songs.where(:title => 'Build Your Kingdom Here'), Songs.where(:title => 'Desert Soul')],
+                      [Songs.where(:title => 'Your Love Never Fails'), Songs.where(:title => '10,000 Reasons'),
+                       Songs.where(:title => 'God Is Able')]]
+p_id = 1
+songs_in_playlists.each do |list_of_songs|
+  list_of_songs.each do |song|
+    Playlist.find(p_id).songss << song
+  end
+  p_id += 1
+end
