@@ -73,6 +73,11 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
+When /^(?:|I )view playlist"([^"]*)"$/ do |playlist|
+  visit playlist_view_path(playlist)
+end
+
+
 When /^(?:|I )search by "([^"]*)" with "([^"]*)"$/ do |field, value|
  visit songs_view_path(:search_type => field, :search_text => value)
 end

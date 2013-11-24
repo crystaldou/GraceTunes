@@ -26,11 +26,15 @@ Background: songs have been added to database, playlists have been added to data
   	| SWS11172013            | Your Love Never Fails      |
   	| SWS11172013            | Give Me Faith              |
   	| SWS11172013            | Glorious Day               |
+
   	
-    And I am on the playlists page
-    
+    Given I am on the GraceTunes playlist page
+    Then I should see "SWS11172013"
+    Then I should see "Your Love Never Fails, Give Me Faith, Glorious Day"
+
+
 Scenario: see the songs in a playlist called "SWS11172013"
-  When I visit "SWS11172013"
+  When I view playlist "SWS11172013"
   Then I should see "Your Love Never Fails"
   Then I should see "Give Me Faith"
   Then I should see "Glorious Day"
