@@ -13,7 +13,8 @@ class PlaylistController < ApplicationController
       playlist.songss.each do |song|
         @song_preview[playlist] << song.title << ", "
       end
-      @song_preview[playlist][0,50]
+      @song_preview[playlist] = @song_preview[playlist][0..-3] + " "
+      @song_preview[playlist] = @song_preview[playlist][0,50]
       @song_preview[playlist] << "..."
     end
   end
