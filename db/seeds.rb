@@ -24,8 +24,12 @@ songs.each do |song|
   Songs.create!(song)
 end
 
-playlists = [{:name => 'SWS11132'}]
+playlists = [{:name => 'SWS111312'}, {:name => 'SWS112012'}]
 playlists.each do |playlist|
   Playlist.create!(playlist)
 end
 Playlist.find(1).songss << Songs.where(:title => 'Your Love Never Fails')
+Playlist.find(1).songss << Songs.where(:title => 'Give Me Faith')
+Playlist.find(1).songss << Songs.where(:title => 'From the Inside Out')
+Playlist.find(2).songss << Songs.where(:title => 'Glorious Day')
+Playlist.find(2).songss << Songs.where(:title => 'Build Your Kingdom Here')
