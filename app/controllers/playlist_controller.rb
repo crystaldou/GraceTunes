@@ -16,4 +16,17 @@ class PlaylistController < ApplicationController
       @song_preview[playlist] << "..."
     end
   end
+
+  def create
+    @playlists = Playlist.create!(params[:movie])
+    flash[:notice] = "Created empty playlist"
+    redirect_to playlist_path
+  end
+ def destroy
+    @playlists = Playlist.find(params[:id])
+    @playlists.destroy
+    flash[:notice] = "#{@playlists.title}' deleted."
+    redirect_to playlist_path
+  end
+
 end
