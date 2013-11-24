@@ -12,8 +12,14 @@ class PlaylistController < ApplicationController
       playlist.songss.each do |song|
         @song_preview[playlist] << song.title << ", "
       end
-      @song_preview[playlist] = @song_preview[playlist][0,50]
-      @song_preview[playlist] << "..."
+      @song_preview[playlist] = @song_preview[playlist][0...-2]
+      if @song_preview[playlist].length > 50
+        @song_preview[playlist] = @song_preview[playlist][0,50]
+        if @song_preview[playlist][50] == ','
+          @song_preview[playlist] = @song_preview[playlist][0...49]
+        end
+        @song_preview[playlist] << "..."
+      end
     end
   end
   def create
