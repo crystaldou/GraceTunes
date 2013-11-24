@@ -38,6 +38,9 @@
           <% if current_user.try(:admin?) %>
             <li><%= link_to "Add a song", new_song_path,:id => "AddSongs" %></li>
           <%end%>
+          <% if current_user.try(:admin?) %>
+            <li><%= link_to "Add a playlist", new_playlist_path,:id => "AddPlaylists" %></li>
+          <%end%>
         </ul>
         <ul class="nav" style="float:right">
           <li><% if current_user %>
