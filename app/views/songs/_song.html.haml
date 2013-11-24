@@ -1,0 +1,9 @@
+%tr
+  %td= song.title
+  %td= song.artist
+  %td= song.album
+  %td
+    - @tags[song].each do |tag|
+      =button_tag tag, :style => "cursor: text"
+  %td= link_to "View", song_path(song)
+  %td= link_to "Edit", edit_song_path(song)

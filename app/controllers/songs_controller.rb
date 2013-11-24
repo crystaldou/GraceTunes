@@ -108,6 +108,10 @@ class SongsController < ApplicationController
         @tags[song] = []
       end
     end
+    respond_to do |format|
+      format.html {}
+      format.js { render 'view'}
+    end
 
   end
 

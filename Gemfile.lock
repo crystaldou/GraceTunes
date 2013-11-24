@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/sunspot/sunspot.git
-  revision: d013ad3c9f8657d0c789e91048f16363d4d0732c
+  revision: 7d87d9ce5a525a0818f2407cd5643d38035b6635
   branch: master
   specs:
     sunspot (2.1.0)
@@ -44,9 +44,9 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.5)
     archive-tar-minitar (0.5.2)
-    arel (3.0.2)
+    arel (3.0.3)
     builder (3.0.4)
-    capybara (2.1.0)
+    capybara (2.2.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -65,7 +65,7 @@ GEM
     coffee-script-source (1.6.3)
     columnize (0.3.6)
     commonjs (0.2.7)
-    cucumber (1.3.9)
+    cucumber (1.3.10)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.3)
       gherkin (~> 2.12)
@@ -100,7 +100,7 @@ GEM
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    launchy (2.3.0)
+    launchy (2.4.0)
       addressable (~> 2.3)
     less (2.4.0)
       commonjs (~> 0.2.7)
@@ -110,7 +110,6 @@ GEM
     libv8 (3.16.14.3)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
-    lockfile (2.1.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -137,7 +136,7 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     pg (0.17.0)
-    pg_search (0.7.0)
+    pg_search (0.7.2)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
@@ -197,9 +196,8 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    simplecov (0.8.1)
+    simplecov (0.8.2)
       docile (~> 1.1.0)
-      lockfile (>= 2.1.0)
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
