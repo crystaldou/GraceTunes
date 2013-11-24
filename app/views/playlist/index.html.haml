@@ -4,10 +4,12 @@
   %table#playlist{:class => "table table-striped"}
     %thead
       %tr
-        %th Name
-        %th Author
+        %th Playlists
+        %th Songs
+        %th View
     %tbody
       - @playlists.each do |playlist|
         %tr
           %td= playlist.name
+          %td= @song_preview[playlist]
           %td= link_to "View", playlist_path(playlist)
