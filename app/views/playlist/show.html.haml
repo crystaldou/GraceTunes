@@ -1,0 +1,17 @@
+-#  This file is app/views/playlist/show.html.haml
+
+%h1= @playlist.name
+  
+%div
+  %table#songs{:class => "table table-striped"}
+    %thead
+      %tr
+        %th Title
+        %th Artist
+        %th Album
+        %th Tags
+        %th
+        %th
+    %tbody#song_list
+      = render :collection => @songs, :partial => 'songs/song'
+

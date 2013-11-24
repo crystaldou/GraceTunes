@@ -19,4 +19,20 @@ class PlaylistController < ApplicationController
     end
   end
 
+  def show
+    id = params[:id]
+    @playlist = Playlist.find(id)
+    
+    @songs = @playlist.songss
+    
+    @tags = {}
+    @songs.each do |song|
+      begin
+        @tags[song] = song.tags.split(", ")
+      rescue
+        @tags[song] = []
+      end
+    end
+  end
+
 end
