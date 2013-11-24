@@ -1,7 +1,7 @@
 class PlaylistController < ApplicationController
   # viewing all playlists
   def index
-    if current_user != nil
+    if not current_user.nil?
       @playlists = Playlist.where(:user_id => current_user.uid)
     else
       @playlists = Playlist.all
@@ -17,7 +17,6 @@ class PlaylistController < ApplicationController
     end
   end
   
-
   def create
     @playlists = Playlist.create!(params[:playlist])
     flash[:notice] = "Created empty playlist"
