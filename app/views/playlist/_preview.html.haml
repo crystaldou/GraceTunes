@@ -1,0 +1,19 @@
+%div{:style=>'margin-left:25px; margin-right:25px', :class=>'well well-sm'}
+  %div{:class=>'jumbotron'}
+    %h3 #{@song.title}
+  %ul#details
+    %li
+      Artist:
+      = @song.artist
+    %li
+      Album:
+      = @song.album
+
+    %li
+      Tags:
+      = @song.tags
+
+    %li
+      Lyrics:
+      %br
+      %pre= @song.lyrics

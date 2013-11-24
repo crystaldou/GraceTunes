@@ -56,7 +56,7 @@ table#movies th.hilite {
   padding: 4px;
 }
 #search_text { 
-  width: 340px;
+  width: 100%;
 }
 #search_type_options {
   width: 353px;
