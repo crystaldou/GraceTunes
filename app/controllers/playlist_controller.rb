@@ -6,14 +6,12 @@ class PlaylistController < ApplicationController
     else
       @playlists = Playlist.all
     end
-    @playlists = Playlist.all
     @song_preview = {}
     @playlists.each do |playlist|
       @song_preview[playlist] = ""
       playlist.songss.each do |song|
         @song_preview[playlist] << song.title << ", "
       end
-      @song_preview[playlist] = @song_preview[playlist][0..-3] + " "
       @song_preview[playlist] = @song_preview[playlist][0,50]
       @song_preview[playlist] << "..."
     end
