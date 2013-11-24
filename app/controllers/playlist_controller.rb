@@ -13,30 +13,26 @@ class PlaylistController < ApplicationController
         @song_preview[playlist] << song.title << ", "
       end
       @song_preview[playlist] = @song_preview[playlist][0...-2]
-      if @song_preview[playlist].length > 50
-        @song_preview[playlist] = @song_preview[playlist][0,50]
-        if @song_preview[playlist][50] == ','
-          @song_preview[playlist] = @song_preview[playlist][0...49]
+      max_length = 150
+      if @song_preview[playlist].length > max_length
+        @song_preview[playlist] = @song_preview[playlist][0,max_length]
+        if @song_preview[playlist][max_length] == ','
+          @song_preview[playlist] = @song_preview[playlist][0...max_length-1]
         end
         @song_preview[playlist] << "..."
       end
     end
   end
-
-  def new
-
-  end
-
   def create
     @playlists = Playlist.create!(params[:playlist])
     flash[:notice] = "Created empty playlist"
-    redirect_to new_playlist_path
+    redirect_to playlist_path
   end
  def destroy
     @playlists = Playlist.find(params[:id])
     @playlists.destroy
     flash[:notice] = "#{@playlists.title}' deleted."
-    redirect_to new_playlist_path
+    redirect_to playlist_path
   end
 
 end
