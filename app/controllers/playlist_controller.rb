@@ -18,4 +18,5 @@ class PlaylistController < ApplicationController
       @song_preview[playlist] << "..."
     end
   end
+
 end
