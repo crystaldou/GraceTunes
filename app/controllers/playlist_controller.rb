@@ -18,7 +18,7 @@ class PlaylistController < ApplicationController
   end
 
   def create
-    @playlists = Playlist.create!(params[:movie])
+    @playlists = Playlist.create!(params[:playlist])
     flash[:notice] = "Created empty playlist"
     redirect_to playlist_path
   end
