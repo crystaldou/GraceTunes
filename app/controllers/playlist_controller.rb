@@ -17,6 +17,10 @@ class PlaylistController < ApplicationController
     end
   end
 
+  def new
+
+  end
+
   def create
     @playlists = Playlist.create!(params[:playlist])
     flash[:notice] = "Created empty playlist"
