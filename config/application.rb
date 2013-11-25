@@ -70,6 +70,8 @@ module Gracetunes
 		g.helper = false
 	end
 
-	
+	# our app responsible for showing error pages
+	config.exceptions_app = self.routes
+
   end
 end
