@@ -3,7 +3,7 @@ ActionMailer::Base.smtp_settings = {
   :port           => '587',
   :authentication => :plain,
   :user_name      => 'GraceTunes2013@gmail.com',
-  :password       => 'koinonia,
+  :password       => 'koinonia',
   :domain         => 'heroku.com',
   :enable_starttls_auto => true
 }
