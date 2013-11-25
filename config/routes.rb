@@ -1,4 +1,8 @@
 Gracetunes::Application.routes.draw do
+  get "errors/server_error"
+
+  get "errors/not_found"
+
   get "playlists/view"
 
   # The priority is based upon order of creation:
@@ -70,5 +74,9 @@ Gracetunes::Application.routes.draw do
   match "/auth/google_oauth2/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as  => :signout
   match '/playlist/:id/share', :to => 'playlist#share'
+
+  match "/401", to: "errors#unauthorized"
+  match "/404", to: "errors#not_found"
+  match "/500", to: "errors#error"
 
 end
