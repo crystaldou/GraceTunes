@@ -62,4 +62,24 @@ class PlaylistController < ApplicationController
       format.js { }
     end
   end
+
+  def share
+    playlist = Playlist.find(params[:id])
+    content = ""
+    counter = 1
+    playlist.songss.each do |song| 
+      content += counter.to_s + '. ' 
+      content += song.title + '\t'
+      content += song.artist + '\t'
+      content += song.album + '\t'
+      content += song.tags + '\n'
+      counter += 1
+    end 
+
+    emails = params[:emails].split(',')
+    UserMailer.share_playlist(emails, content).deliver
+    flash.keep[:notice] = "#{@playlist} successfully shared."
+    redirect_to playlist_path(playlist)
+
+  end 
 end

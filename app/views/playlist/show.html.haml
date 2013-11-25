@@ -15,6 +15,11 @@
           %td= song.title
           %td= song.artist
           %td= song.album
+  = form_tag action: 'share', method: 'post' do
+    = label :playlist, :emails, 'Emails: '
+    = text_field_tag :emails
+    %br
+    = submit_tag 'Share Playlist Info', :id => 'share_playlist', :class => 'btn btn-warning'
 
 %div#songList{:style => "float:left;margin-left: 30px"}
 
@@ -28,3 +33,4 @@
       $('#songList').html(data)
     })
   });
+
