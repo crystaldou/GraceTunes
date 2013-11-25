@@ -13,8 +13,7 @@ Background: adding songs
 
 
 	Scenario:
-
-	When I follow "Sign in"
+  Given I am an admin
 	
 	When I add a new song
 	Then I should see "Create New Song"

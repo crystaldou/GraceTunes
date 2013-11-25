@@ -70,13 +70,6 @@ module Gracetunes
 		g.helper = false
 	end
 
-	# our app responsible for showing error pages
-	config.exceptions_app = self.routes
-	
-	# Show full error reports and disable caching [when true]
-	# Show custom error pages [when false]
-	#defaults: true for development, false for production
-	config.action_controller.consider_all_requests_local = false
 	
   end
 end
