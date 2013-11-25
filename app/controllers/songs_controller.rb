@@ -30,7 +30,7 @@ class SongsController < ApplicationController
   def new
     # default: render 'new' template
     if not current_user.try(:admin?)
-      raise ArgumentError, "You are not an admin"
+      render :template => "/errors/error.html.haml"
     end
   end
 
@@ -79,6 +79,7 @@ class SongsController < ApplicationController
     # each element should be a hash --> i.e. each song in @songs, you can do song.title, song.artist, song.tags
     # suggestion: for the file - instead of storing it in our app, could we link them to a dropbox or something
     # from where they can download the song?; so the hash would store the link.
+  
     @type = params[:search_type]
     if @type
       @text = params[:search_text].split.map(&:capitalize).join(' ')

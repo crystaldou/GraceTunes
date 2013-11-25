@@ -46,7 +46,9 @@ class PlaylistController < ApplicationController
   def show
     id = params[:id]
     @playlist = Playlist.find(id)
-
+    if @playlist.user_id != current_user.try(:id)
+      raise ArgumentError, "You can't access"
+    end
     @songs = @playlist.songss
     @tags = {}
     @songs.each do |song|

@@ -41,6 +41,17 @@ When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
   with_scope(parent) { When "#{step}:", table_or_string }
 end
 
+Given /^a valid user$/ do
+  @user = User.create!({
+    :name => "james"
+  })
+  @user.admin = true
+  @user.save!
+end
+
+Given /^I am an admin$/ do
+  current_user = User.find(1)
+end
 Given /the following songs exist/ do |songs_table|
   songs_table.hashes.each do |song|
     Songs.create(song)
@@ -83,6 +94,7 @@ When /^(?:|I )search by "([^"]*)" with "([^"]*)"$/ do |field, value|
 end
 
 When /^(?:|I )add a new song$/ do
+  raise ArgumentError, current_user
   visit new_song_path
 end
 

@@ -18,7 +18,7 @@ Background: songs have been added to database, playlists have been added to data
   
 Scenario: create playlist
   When I add a new playlist
-  I should see "Add a playlist"
+  Then I should see "Add a playlist"
 	When I fill in "playlist_title" with "SWS11132013"
 	And I press "Save Changes"
 	Then I should see "Hello World was successfully created."
