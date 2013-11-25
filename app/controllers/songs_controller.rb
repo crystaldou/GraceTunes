@@ -114,6 +114,15 @@ class SongsController < ApplicationController
     end
 
   end
+  
+  def addtoplaylist
+    @songId = params[:song_id]
+    @playlistId = params[:playlist].split(", ")[1]
+    @playlist = Playlist.find(@playlistId)
+    @song = Songs.find(@songId)
+    @playlist.songss << @song
+    redirect_to '/songs/view'
+  end
 
   # def test
   #   @texts = {}
