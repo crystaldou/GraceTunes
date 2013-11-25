@@ -46,9 +46,7 @@ class PlaylistController < ApplicationController
   def show
     id = params[:id]
     @playlist = Playlist.find(id)
-    if @playlist.user_id != current_user.try(:uid)
-      raise ArgumentError, "wrong id"
-    end
+
     @songs = @playlist.songss
     @tags = {}
     @songs.each do |song|
