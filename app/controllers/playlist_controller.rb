@@ -1,11 +1,11 @@
 class PlaylistController < ApplicationController
   # viewing all playlists
   def index
-    #if not current_user.nil?
-    #  @playlists = Playlist.where(:user_id => current_user.uid)
-    #else
+    if not current_user.nil?
+      @playlists = Playlist.where(:user_id => current_user.uid)
+    else
       @playlists = Playlist.all
-    #end
+    end
     @song_preview = {}
     @playlists.each do |playlist|
       @song_preview[playlist] = ""
@@ -31,7 +31,7 @@ class PlaylistController < ApplicationController
   
   def create
     @playlist = Playlist.create(:name => params[:playlist_name])
-    @playlist.user_id = current_user.id
+    @playlist.user_id = current_user.uid
     @playlist.save!
     flash[:notice] = "Created empty playlist"
     redirect_to playlist_path(@playlist.id)
@@ -46,7 +46,9 @@ class PlaylistController < ApplicationController
   def show
     id = params[:id]
     @playlist = Playlist.find(id)
-    
+    if @playlist.user_id != current_user.try(:uid)
+      raise ArgumentError, "wrong id"
+    end
     @songs = @playlist.songss
     @tags = {}
     @songs.each do |song|
