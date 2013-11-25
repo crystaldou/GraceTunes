@@ -8,6 +8,3 @@
   = select_tag :search_type, options_for_select([["Title","Title"], ["Artist", "Artist"], ["Album" ,"Album"], ["Tags","Tags"], ["Lyrics", "Lyrics"]]), :id => 'search_text'
   = text_field_tag 'search_text', nil, :placeholder => 'Enter text here'
   = submit_tag "Search", :class => 'btn btn-primary btn-lg btn-block'
-  
-%button.btn.btn-primary.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal"}
-  Launch demo modal
