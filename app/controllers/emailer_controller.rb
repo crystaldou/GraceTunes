@@ -1,2 +1,0 @@
-class EmailerController < ApplicationController
-end
