@@ -34,7 +34,7 @@ class PlaylistController < ApplicationController
     @playlist.user_id = current_user.id
     @playlist.save!
     flash[:notice] = "Created empty playlist"
-    redirect_to playlist_path(@playlists.id)
+    redirect_to playlist_path(@playlist.id)
   end
  def destroy
     @playlists = Playlist.find(params[:id])
