@@ -10,6 +10,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 <div id="wrap">
@@ -39,7 +40,10 @@
             <li><%= link_to "Add a song", new_song_path,:id => "AddSongs" %></li>
           <%end%>
           <% if current_user.try(:admin?) %>
-            <li><%= link_to "Add a playlist", new_playlist_path,:id => "AddPlaylists" %></li>
+            <li><%= content_tag :a, :id => "AddPlaylists", :style => 'cursor: pointer' do -%>
+              Add a Playlist
+            <% end -%>
+                </li>
           <%end%>
         </ul>
         <ul class="nav" style="float:right">
@@ -62,6 +66,17 @@
     </div>
   </div>
 </div>
+  <div id="block"></div>
+  <div id="addnewplaylistform" style="width: 30%; margin-left: auto; margin-right: auto; height: auto; padding: 10px; display:none">
+    <%= form_tag new_playlist_path do -%>
+      <%= label_tag "Name: "%>
+      <%= text_field_tag 'playlist_name', nil, :placeholder => 'Enter text here', :style => 'width: 90%' %>
+      <%= submit_tag "Create New", :class => 'btn btn-primary'%>
+      <%= button_tag "Cancel", :id => 'cancelPlaylist', :class => 'btn btn-primary'%>
+      <% end -%>
+  </div>
+
+        
       <%= yield %>
 </div>
 </div>
@@ -72,5 +87,16 @@
                                      <br>Gracepoint – Berkeley 1275 Harbor Bay Parkway Alameda, CA 94502</p>
       </div>
     </div>
+    
+    <%= javascript_tag do %>
+
+      $('#AddPlaylists').click(function() {
+          $('#addnewplaylistform').css("display", "block");
+          $('#block').fadeIn();
+      });
+      $('#cancelPlaylist').click(function() {
+          $('#addnewplaylistform').css("display", "hidden");
+      })
+    <% end %>
 </body>
 </html>

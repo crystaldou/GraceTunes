@@ -14,3 +14,15 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+
+function open(url) {
+    $('#block').fadeIn();
+    $('#iframe').attr('src', url);
+    $('#container').fadeIn();   
+}
+
+function close() {  
+    $('#block').fadeOut();
+    $('#container').fadeOut();  
+}

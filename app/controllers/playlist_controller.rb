@@ -24,9 +24,13 @@ class PlaylistController < ApplicationController
     end
   end
   def new
-    @playlists = Playlist.create!(params[:playlist])
+
+  end
+  
+  def create
+    @playlists = Playlist.create!
     flash[:notice] = "Created empty playlist"
-    redirect_to playlist_path
+    redirect_to playlist_path(@playlists.id)
   end
  def destroy
     @playlists = Playlist.find(params[:id])
@@ -47,6 +51,15 @@ class PlaylistController < ApplicationController
       rescue
         @tags[song] = []
       end
+    end
+  end
+  
+  def viewSong
+    id = params[:id]
+    @previews = [Songs.find(id)]
+    respond_to do |format|
+      format.html { render :partial =>'preview', :collection => @previews}
+      format.js { }
     end
   end
 end

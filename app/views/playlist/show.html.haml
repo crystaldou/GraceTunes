@@ -11,10 +11,20 @@
         %th Album
     %tbody#playlist_list
       -@songs.each do |song|
-        %tr{:id => "song_#{song.id}"}
+        %tr{:id => "song_#{song.id}", :class => "clickableRow"}
           %td= song.title
           %td= song.artist
           %td= song.album
 
-%div
-  blah
+%div#songList{:style => "float:left;margin-left: 30px"}
+
+:javascript
+  $(".clickableRow").click(function() {
+    id = parseInt($(this).attr("id").slice(5))
+    $.ajax({
+      url: '/playlists/viewSong?id=' + id
+      
+    }).done(function(data) {
+      $('#songList').html(data)
+    })
+  });

@@ -14,7 +14,6 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
-  gem 'sunspot_solr', github: 'sunspot/sunspot', branch: 'master'
 end
 
 group :test do
@@ -40,9 +39,9 @@ end
 gem 'jquery-rails'
 gem 'haml'
 gem 'yomu'
-gem 'sunspot_rails', github: 'sunspot/sunspot', branch: 'master'
 gem 'carrierwave'
 gem 'omniauth-google-oauth2'
+gem 'will_paginate'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
