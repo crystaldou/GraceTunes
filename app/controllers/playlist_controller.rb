@@ -49,12 +49,23 @@ class PlaylistController < ApplicationController
       end
     end
   end
-
   def share
-    UserMailer.share_playlist(params[:emails]).deliver
     playlist = Playlist.find(params[:id])
-    flash[:notice] = "Email has been successfully sent"
+    content = ""
+    counter = 0
+    playlist.songss.each do |song| 
+      content += counter + '. ' 
+      content += song.title + '\t'
+      content += song.artist + '\t'
+      content += song.album + '\t'
+      content += song.tags + 'n'
+    end 
+
+    emails = params[:emails].split(',')
+    UserMailer.share_playlist(emails, content).deliver
+    flash.keep[:notice] = "#{@playlist}' successfully shared."
     redirect_to playlist_path(playlist)
+
   end 
 
 end
