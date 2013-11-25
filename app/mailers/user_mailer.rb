@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
   def share_playlist(emails, playlist)
   	@content = playlist
     emails.each do |email| 
-  		mail(:to => email, :subject => 'Someone has shared a GraceTunes playlist with you!', 
+  		mail(:to => email, :subject => 'Someone has shared a GraceTunes playlist with you!')
   	end 
   end 
 end
