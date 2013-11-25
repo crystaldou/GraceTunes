@@ -24,11 +24,15 @@ class PlaylistController < ApplicationController
     end
   end
   def new
-
+    if not current_user.try(:admin?)
+      raise ArgumentError, "You are not an admin"
+    end
   end
   
   def create
-    @playlists = Playlist.create!
+    @playlist = Playlist.create(:name => params[:playlist_name])
+    @playlist.user_id = current_user.id
+    @playlist.save!
     flash[:notice] = "Created empty playlist"
     redirect_to playlist_path(@playlists.id)
   end

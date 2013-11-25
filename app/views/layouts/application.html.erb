@@ -40,7 +40,7 @@
             <li><%= link_to "Add a song", new_song_path,:id => "AddSongs" %></li>
           <%end%>
           <% if current_user.try(:admin?) %>
-            <li><%= content_tag :a, :id => "AddPlaylists", :style => 'cursor: pointer' do -%>
+            <li><%= content_tag :a, :id => "AddPlaylists", :style => 'cursor: pointer', "data-target" => "#myModal", "data-toggle" => "modal" do -%>
               Add a Playlist
             <% end -%>
                 </li>
@@ -61,7 +61,28 @@
           </li>
         </ul>
       </div>
-
+      <div class="modal fade" style="display:none" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">Add new Playlist</h4>
+            </div>
+            <div class="modal-body">
+              <%= form_tag new_playlist_path do -%>
+                <%= label_tag "Name: "%>
+                <%= text_field_tag 'playlist_name', nil, :placeholder => 'Enter text here', :style => 'width: 90%' %>
+        
+               
+            </div>
+            <div class="modal-footer">       
+              <button type="submit" class="btn btn-primary">Create</button>
+              <% end -%>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div>
 
     </div>
   </div>
@@ -88,15 +109,6 @@
       </div>
     </div>
     
-    <%= javascript_tag do %>
-
-      $('#AddPlaylists').click(function() {
-          $('#addnewplaylistform').css("display", "block");
-          $('#block').fadeIn();
-      });
-      $('#cancelPlaylist').click(function() {
-          $('#addnewplaylistform').css("display", "hidden");
-      })
-    <% end %>
+    
 </body>
 </html>
