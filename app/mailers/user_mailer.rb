@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "GraceTunes2013@gmail.com"
   def share_playlist(emails, playlist)
   	@content = playlist
     emails.each do |email| 
