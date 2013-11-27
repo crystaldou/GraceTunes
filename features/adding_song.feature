@@ -1,5 +1,4 @@
 Feature: Add a song with title, artist, tag, and album fields
-
 	As a praise leader
 	So that I can quickly add a new song into our database of praise songs
 	I want to add a new song
@@ -7,13 +6,14 @@ Feature: Add a song with title, artist, tag, and album fields
 Background: adding songs
 
 	Given I am on the songs page
-	
-	Given a valid user
-	
-
-
+  
+	@omniauth_test
 	Scenario:
-  Given I am an admin
+  When I follow "Sign in"
+  And that user is signed in
+	When I follow "Make Admin"
+	When I fill in "admin_pass" with "koinonia"
+	And I press "Update User Info"
 	
 	When I add a new song
 	Then I should see "Create New Song"

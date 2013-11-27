@@ -1,4 +1,6 @@
 -#  This file is app/views/songs/view.html.haml
+- if flash[:notice]
+  #notice.message{:class=> 'alert'}= flash[:notice]
 
 %h1 Results
 = form_tag songs_view_path, :remote => true, :method => :get do

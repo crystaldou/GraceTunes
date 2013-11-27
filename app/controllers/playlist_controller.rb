@@ -31,7 +31,7 @@ class PlaylistController < ApplicationController
   
   def create
     @playlist = Playlist.create(:name => params[:playlist_name])
-    @playlist.user_id = current_user.id
+    @playlist.user_id = current_user.try(:id)
     @playlist.save!
     flash[:notice] = "Created empty playlist"
     redirect_to playlist_path(@playlist.id)
@@ -39,7 +39,7 @@ class PlaylistController < ApplicationController
  def destroy
     @playlists = Playlist.find(params[:id])
     @playlists.destroy
-    flash[:notice] = "#{@playlists.title}' deleted."
+    flash[:notice] = "#{@playlists.name}' deleted."
     redirect_to playlist_path
   end
 

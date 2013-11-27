@@ -16,6 +16,7 @@ module NavigationHelpers
     when /^the (GraceTunes )?home\s?page$/ then '/songs'
     when /^the songs page$/ then '/songs'
     when /^the GraceTunes view page$/ then '/songs/view'  
+    when /^the GraceTunes playlist page$/ then '/playlist'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

@@ -50,7 +50,7 @@ Given /^a valid user$/ do
 end
 
 Given /^I am an admin$/ do
-  current_user = User.find(1)
+  session[:user_id] = 1
 end
 Given /the following songs exist/ do |songs_table|
   songs_table.hashes.each do |song|
@@ -60,15 +60,17 @@ end
 
 Given /the following playlists exist/ do |playlist_table|
   playlist_table.hashes.each do |playlist|
-    Playlists.create(playlist)
+    @playlist = Playlist.create(playlist)
+    @playlist.user_id = 1
+    @playlist.save!
   end
 end
 
 Given /the following associations exist/ do |table|
   table.hashes.each do |element|
-    playlist = Playlists.where(name: element['playlist'])
+    playlist = Playlist.where(name: element['playlist'])
     song = Songs.where(title: element['song'])
-    playlist.songs << song
+    playlist[0].songss << song
   end
 end
 
@@ -94,10 +96,12 @@ When /^(?:|I )search by "([^"]*)" with "([^"]*)"$/ do |field, value|
 end
 
 When /^(?:|I )add a new song$/ do
-  raise ArgumentError, current_user
   visit new_song_path
 end
 
+And /^that user is signed in$/ do
+  visit "/auth/google_oauth2"
+end
 When /^(?:|I )edit "([^"]*)"$/ do |song|
  @song = Songs.where(title: song)
  visit edit_song_path(@song.all)
@@ -105,6 +109,13 @@ end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
+end
+When /^(?:|I) add a new playlist$/ do
+  click_link("AddPlaylists")
+end
+
+When /^I add "([^"]*)" to playlist$/ do |song|
+  click_button(song + "_button")
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|

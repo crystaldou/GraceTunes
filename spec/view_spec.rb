@@ -40,6 +40,7 @@ describe SongsController, :type => :controller do
   
   describe '#update' do
     it 'should redirect to show movie' do
+      controller.stub(:parse).and_return('')
       put :update , :id => @song.id, :song => {:title => @song.title}
       response.should redirect_to song_path(@song)
     end

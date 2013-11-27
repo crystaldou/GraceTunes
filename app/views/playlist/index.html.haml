@@ -12,4 +12,4 @@
         %tr
           %td= playlist.name
           %td= @song_preview[playlist]
-          %td= link_to "View", playlist_path(playlist)
+          %td= link_to "View", playlist_path(playlist), :id => playlist.name

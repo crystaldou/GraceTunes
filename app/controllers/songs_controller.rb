@@ -122,7 +122,8 @@ class SongsController < ApplicationController
     @playlist = Playlist.find(@playlistId)
     @song = Songs.find(@songId)
     @playlist.songss << @song
-    redirect_to '/songs/view'
+    flash[:notice] = "#{@song.title} was successfully added"
+    redirect_to request.referer
   end
 
   # def test

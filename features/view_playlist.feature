@@ -16,7 +16,7 @@ Background: songs have been added to database, playlists have been added to data
   
   
   	Given the following playlists exist:
-  	| name                   | 
+  	| name                   |
   	| SWS11172013            |
   	| SWS11102013            |
   	
@@ -26,18 +26,16 @@ Background: songs have been added to database, playlists have been added to data
   	| SWS11172013            | Your Love Never Fails      |
   	| SWS11172013            | Give Me Faith              |
   	| SWS11172013            | Glorious Day               |
-
   	
-    Given I am on the GraceTunes playlist page
-    Then I should see "SWS11172013"
-    Then I should see "Your Love Never Fails, Give Me Faith, Glorious Day"
-
-
+    @omniauth_test
 Scenario: see the songs in a playlist called "SWS11172013"
-  When I view playlist "SWS11172013"
+  Given I am on the songs page
+  And that user is signed in
+  Given I am on the GraceTunes playlist page
+  Then I should see "SWS11172013"
+  Then I should see "Your Love Never Fails, Give Me Faith, Glorious Day"
+  When I follow "SWS11172013"
   Then I should see "Your Love Never Fails"
   Then I should see "Give Me Faith"
   Then I should see "Glorious Day"
-  Then I should see "faith"
-  Then I should see "love"
   Then I should not see "From the Inside Out"
