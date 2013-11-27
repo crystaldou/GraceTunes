@@ -18,7 +18,7 @@
         %th Tags
         %th View
         %th Edit
-    %tbody
+    %tbody#song_list
       - @songs.each do |song|
         = render :collection => @songs, :partial => 'songs/song'
 
