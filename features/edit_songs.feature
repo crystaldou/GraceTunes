@@ -30,7 +30,8 @@ Scenario:
 	Then the "song_artist" field should contain "Rend Collective Experiment"
 	
 	When I fill in "song_tags" with "dry, dead, burnt out, perseverance" 
-	When I press "submit_song"
+	When I attach the file "lyrics.doc" to "song_file"
+    When I press "submit_song"
 	And I should see "Song has been successfully edited"
 
 Scenario:
@@ -42,6 +43,7 @@ Scenario:
 	Then the "song_artist" field should contain "Elevation Worship"
 
 	When I fill in "song_album" with "Kingdom Come" 
+    When I attach the file "lyrics.doc" to "song_file"
 	When I press "submit_song"
 	And I should see "Song has been successfully edited"
 

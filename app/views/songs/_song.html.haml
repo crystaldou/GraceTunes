@@ -6,9 +6,10 @@
     - @tags[song].each do |tag|
       =button_tag tag, :style => "cursor: text"
   %td
-    = form_tag songs_view_path, :method => :post, :id => song.id do
-      = text_field_tag :song_id, song.id, :style => 'display: none'
-      = select_tag :playlist, options_for_select(Playlist.where(:user_id => current_user.id).map {|playlist| "#{playlist.name}, #{playlist.id}"}, params[:playlist]), :class => 'selectpicker'
-      = submit_tag "Add", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px'
+    - if current_user.try(:admin?)
+      = form_tag songs_view_path, :method => :post, :id => song.id do
+        = text_field_tag :song_id, song.id, :style => 'display: none'
+        = select_tag :playlist, options_for_select(Playlist.where(:user_id => current_user.id).map {|playlist| "#{playlist.name}, #{playlist.id}"}, params[:playlist]), :class => 'selectpicker'
+        = submit_tag "Add", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px'
   %td= link_to "View", song_path(song)
   %td= link_to "Edit", edit_song_path(song)
