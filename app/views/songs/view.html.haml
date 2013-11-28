@@ -18,6 +18,8 @@
         %th Tags
         %th View
         %th Edit
+        - if not current_user.nil?
+          %th Playlist
     %tbody#song_list
       - @songs.each do |song|
         = render :collection => @songs, :partial => 'songs/song'
