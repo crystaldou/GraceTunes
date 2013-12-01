@@ -42,6 +42,7 @@ gem 'yomu'
 gem 'carrierwave'
 gem 'omniauth-google-oauth2'
 gem 'will_paginate'
+gem 'itunes-search-api'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

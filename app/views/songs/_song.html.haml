@@ -12,5 +12,5 @@
     %td
       = form_tag songs_view_path, :method => :post, :id => song.id do
         = text_field_tag :song_id, song.id, :style => 'display: none'
-        = select_tag :playlist, options_for_select(Playlist.where(:user_id => current_user.id).map {|playlist| "#{playlist.name}, #{playlist.id}"}, params[:playlist]), :class => 'selectpicker', :style => "width: inherit"
+        = select_tag :playlist, options_for_select(Playlist.where(:user_id => current_user.id).map {|playlist| "#{playlist.name}, #{playlist.id}"} || ["none"], params[:playlist]), :class => 'selectpicker', :style => "width: inherit"
         = submit_tag "Add", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px', :id => "#{song.title}_button"

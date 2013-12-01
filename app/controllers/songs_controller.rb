@@ -25,6 +25,12 @@ class SongsController < ApplicationController
       end
       current_user.save!
     end
+    # search = Hallon::Search.new("Hillsong")
+    #   search.load
+    #   @tracks = search.tracks[0...5].map(&:load)
+    #   
+    @tracks = ITunesSearchAPI.search(:term => "Hillsong", :country => "US", :media => "music")
+
   end
 
   def new

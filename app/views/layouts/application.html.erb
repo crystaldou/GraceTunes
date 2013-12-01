@@ -56,7 +56,10 @@
               <h5>Welcome <%= current_user.name %></h5>
               <li><%= link_to "Make Admin", '/user/edit'%>
             <%end%>
+            <li>   <img style="margin-top: 5px; margin-left: 5px" height=30 width=30 src="<%= current_user.image%>?sz=30">
+             </li>
             <li><%= link_to "Sign out", '/signout' %></li>
+
           <% else %>
             <%= link_to "Sign in", '/auth/google_oauth2'%>
           <% end %>
