@@ -89,21 +89,7 @@ class SongsController < ApplicationController
     @type = params[:search_type]
     if @type
       @text = params[:search_text].split.map(&:capitalize).join(' ')
-      if @type == "Title"
-        @songs = Songs.where("title LIKE '%#{@text}%'")
-      elsif @type == "Artist"
-        @songs = Songs.where("artist LIKE '%#{@text}%'")
-      elsif @type == "Album"
-        @songs = Songs.where("album LIKE '%#{@text}%'")
-      elsif @type == "Tags"
-        @songs = Songs.where("tags LIKE '%#{@text.downcase}%'")
-      elsif @type == "Lyrics"
-        if ActiveRecord::Base.connection.instance_values["config"][:adapter] != "sqlite3"
-          @songs = Songs.search_lyrics(@text.downcase)
-        else
-          @songs = Songs.where("lyrics LIKE '%#{@text.downcase}%'")
-        end
-      end
+      @songs = Songs.searchText(@type, @text)
     else
       @songs = Songs.all
     end
