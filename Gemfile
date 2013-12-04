@@ -41,7 +41,7 @@ gem 'haml'
 gem 'yomu'
 gem 'carrierwave'
 gem 'omniauth-google-oauth2'
-gem 'will_paginate'
+gem 'will_paginate', '~> 3.0.5'
 gem 'itunes-search-api'
 
 # To use ActiveModel has_secure_password

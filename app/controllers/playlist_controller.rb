@@ -2,7 +2,7 @@ class PlaylistController < ApplicationController
   # viewing all playlists
   def index
     if not current_user.nil?
-      @playlists = Playlist.where(:user_id => current_user.id)
+      @playlists = User.find(current_user.id).playlists
     else
       @playlists = Playlist.all
     end
@@ -23,21 +23,23 @@ class PlaylistController < ApplicationController
       end
     end
   end
+  
   def new
     if not current_user.try(:admin?)
-      raise ArgumentError, "You are not an admin"
+      render :template => "/errors/unauthorized.html.haml"
     end
   end
   
   def create
     @playlist = Playlist.create(:name => params[:playlist_name])
-    @playlist.user_id = current_user.try(:id)
+    @playlist.users << User.find(current_user.try(:id))
     @playlist.save!
     flash[:notice] = "Created empty playlist"
-    redirect_to playlist_path(@playlist.id)
+    redirect_to playlist_path(@playlist.token)
   end
+  
  def destroy
-    @playlists = Playlist.find(params[:id])
+    @playlists = Playlist.find_by_token(params[:id])
     @playlists.destroy
     flash[:notice] = "#{@playlists.name}' deleted."
     redirect_to playlist_path
@@ -45,9 +47,9 @@ class PlaylistController < ApplicationController
 
   def show
     id = params[:id]
-    @playlist = Playlist.find(id)
-    if @playlist.user_id != current_user.try(:id)
-      raise ArgumentError, "You can't access"
+    @playlist = Playlist.find_by_token(id)
+    if not @playlist.users.map { |user| user.id }.include? current_user.try(:id)
+      @playlist.users << User.find(current_user.try(:id))
     end
     @songs = @playlist.songss
     @tags = {}
@@ -70,7 +72,7 @@ class PlaylistController < ApplicationController
   end
 
   def share
-    playlist = Playlist.find(params[:id])
+    playlist = Playlist.find_by_token(params[:id])
     content = ""
     counter = 1
     playlist.songss.each do |song| 
@@ -81,9 +83,8 @@ class PlaylistController < ApplicationController
       content += song.tags + '\n'
       counter += 1
     end 
-
     emails = params[:emails].split(',')
-    UserMailer.share_playlist(emails, content).deliver
+    UserMailer.share_playlist(emails, content, playlist).deliver
     flash.keep[:notice] = "#{@playlist} successfully shared."
     redirect_to playlist_path(playlist)
 

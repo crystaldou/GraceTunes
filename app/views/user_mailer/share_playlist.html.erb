@@ -6,6 +6,8 @@
   <body>
     <h1>Hello! You have received a playlist from GraceTunes!</h1>
     <%= @content %> 
+    
+    <%= users_url(host: "gracetunes.herokuapp.com/playlist/#{@token}")%>
 
     <p>Thanks for reading and have a great day!</p>
   </body>

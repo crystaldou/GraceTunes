@@ -36,7 +36,7 @@ class SongsController < ApplicationController
   def new
     # default: render 'new' template
     if not current_user.try(:admin?)
-      render :template => "/errors/error.html.haml"
+      render :template => "/errors/unauthorized.html.haml"
     end
   end
 
@@ -89,9 +89,9 @@ class SongsController < ApplicationController
     @type = params[:search_type]
     if @type
       @text = params[:search_text].split.map(&:capitalize).join(' ')
-      @songs = Songs.searchText(@type, @text)
+      @songs = Songs.searchText(@type, @text).paginate(:per_page => 10, :page => params[:page])
     else
-      @songs = Songs.all
+      @songs = Songs.scoped.paginate(:per_page => 5, :page => params[:page])
     end
     @tags = {}
     @songs.each do |song|
