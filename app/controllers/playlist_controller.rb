@@ -86,7 +86,6 @@ class PlaylistController < ApplicationController
     emails = params[:emails].split(',')
     UserMailer.share_playlist(emails, content, playlist).deliver
     flash.keep[:notice] = "#{@playlist} successfully shared."
-    redirect_to playlist_path(playlist)
-
+    redirect_to playlist_path(playlist.token)
   end 
 end
