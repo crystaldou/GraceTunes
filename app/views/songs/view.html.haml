@@ -22,6 +22,5 @@
           %th Playlist
     %tbody#song_list
       = render :collection => @songs, :partial => 'songs/song'
-
-  
-  
+%div#paginate
+  = render :partial => 'songs/pagination'

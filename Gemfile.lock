@@ -246,5 +246,5 @@ DEPENDENCIES
   therubyracer (~> 0.12.0)
   twitter-bootstrap-rails
   uglifier
-  will_paginate
+  will_paginate (~> 3.0.5)
   yomu
