@@ -3,10 +3,8 @@ class UserMailer < ActionMailer::Base
   def share_playlist(emails, playlist, content)
   	@content = playlist
   	content.songss.each do |song|
-  	  open("tmp.doc", "wb") do |file|
-  	    file << open("http://gracetunes.herokuapp.com#{song.file}").read
-	    end
-  	  attachments['test#{song.id}'] = File.open("tmp.doc")
+  	  
+  	  attachments['test#{song.id}'] = File.open(song.file.current_path)
 	  end
 	  @token = content.token
     emails.each do |email| 

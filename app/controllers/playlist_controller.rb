@@ -2,12 +2,9 @@ class PlaylistController < ApplicationController
   # viewing all playlists
   def index
     if not current_user.nil?
-      @playlists = User.find(current_user.id).playlists
+      @text = params[:search_text]
+      @playlists = User.find(current_user.id).playlists.searchList(@text)
       @type = params[:search_type]
-      if @type != nil
-        @text = params[:search_text].split.map(&:capitalize).join(' ')
-        @playlists = Playlist.searchList(@text)
-      end
     else
       @playlists = Playlist.all
     end
