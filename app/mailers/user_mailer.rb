@@ -3,9 +3,12 @@ class UserMailer < ActionMailer::Base
   def share_playlist(emails, playlist, content)
   	@content = playlist
   	content.songss.each do |song|
-  	  file = song.file.to_s
-  	  file[0] = ''
-  	  attachments['test#{song.id}'] = File.open(File.absolute_path("public#{song.file}"))
+
+  	  require 'open-uri'
+  	  file = open("song.txt", "wb") do |file|
+        file << open('http://localhost:3000/' + song.file.to_s).read
+      end
+  	  attachments['test#{song.id}'] = file
 	  end
 	  @token = content.token
     emails.each do |email| 
