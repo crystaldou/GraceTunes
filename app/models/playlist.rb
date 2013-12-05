@@ -3,7 +3,10 @@ class Playlist < ActiveRecord::Base
   has_and_belongs_to_many :songss
   has_and_belongs_to_many :users
   before_create :add_token
-  
+
+  def self.searchList(text)
+    return Playlist.where("name LIKE '%#{text}%'")
+  end
 
   
   private
@@ -13,5 +16,7 @@ class Playlist < ActiveRecord::Base
       self.token = SecureRandom.hex[0,10].upcase
     end while self.class.exists?(token: token)
   end
+
+
   
 end
