@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
   	content.songss.each do |song|
 
   	  require 'open-uri'
-  	  file = open("http://gracetunes.herokuapp.com#{song.file}")
+  	  file = open("http://gracetunes.herokuapp.com/public#{song.file}")
   	  raise ArgumentError, file
   	  attachments['test#{song.id}'] = file
 	  end
