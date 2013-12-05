@@ -5,9 +5,8 @@ class UserMailer < ActionMailer::Base
   	content.songss.each do |song|
 
   	  require 'open-uri'
-  	  file = open("song.txt", "wb") do |file|
-        file << open('http://localhost:3000/' + song.file.to_s).read
-      end
+  	  file = open("http://localhost:3000#{song.file}")
+  	  raise ArgumentError, file
   	  attachments['test#{song.id}'] = file
 	  end
 	  @token = content.token
