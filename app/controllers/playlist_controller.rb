@@ -4,9 +4,9 @@ class PlaylistController < ApplicationController
     if not current_user.nil?
       @playlists = User.find(current_user.id).playlists
       @type = params[:search_type]
-      if type != nil
+      if @type != nil
         @text = params[:search_text].split.map(&:capitalize).join(' ')
-        @playlists = Playlist.searchList(text)
+        @playlists = Playlist.searchList(@text)
       end
     else
       @playlists = Playlist.all

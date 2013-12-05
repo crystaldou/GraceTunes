@@ -1,5 +1,5 @@
 -#  This file is app/views/songs/view.html.haml
-= form_tag playlist_index_path, :remote => true, :method => :get do
+= form_tag playlist_index_path, :method => :get do
   = select_tag :search_type, options_for_select([["Playlists","Playlists"]], params[:search_type]), :class => 'selectpicker'
   = text_field_tag 'search_text', nil, :placeholder => 'Search for Playlists', :style => 'width: 500px'
   = submit_tag "Search", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px'
