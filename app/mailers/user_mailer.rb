@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   	@content = playlist
   	content.songss.each do |song|
   	  
-  	  attachments["test#{song.id}.doc"] = File.read(song.file.current_path)
+  	  attachments["#{song.title}.doc"] = File.read(song.file.current_path)
 	  end
 	  @token = content.token
     emails.each do |email| 
