@@ -1,6 +1,5 @@
 -#  This file is app/views/songs/view.html.haml
-= form_tag playlist_index_path, :method => :get do
-  = select_tag :search_type, options_for_select([["Playlists","Playlists"]], params[:search_type]), :class => 'selectpicker'
+= form_tag playlist_index_path, :remote => true, :method => :get do
   = text_field_tag 'search_text', nil, :placeholder => 'Search for Playlists', :style => 'width: 500px'
   = submit_tag "Search", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px'
 %div
@@ -10,9 +9,7 @@
         %th Playlists
         %th Songs
         %th View
-    %tbody
-      - @playlists.each do |playlist|
-        %tr
-          %td= playlist.name
-          %td= @song_preview[playlist]
-          %td= link_to "View", :action => 'show', :id => playlist.token
+    %tbody#playlist_list
+      = render :collection => @playlists, :partial => 'playlist/playlist'
+%div#paginate
+  = render :partial => 'playlist/pagination'

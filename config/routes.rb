@@ -74,6 +74,7 @@ Gracetunes::Application.routes.draw do
   match "/auth/google_oauth2/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as  => :signout
   match '/playlist/:id/share', :to => 'playlist#share'
+  match '/previewSong', :to => 'songs#preview'
 
   match "/401", to: "errors#unauthorized"
   match "/404", to: "errors#not_found"

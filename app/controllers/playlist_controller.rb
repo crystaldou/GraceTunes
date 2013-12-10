@@ -3,10 +3,7 @@ class PlaylistController < ApplicationController
   def index
     if not current_user.nil?
       @text = params[:search_text]
-      @playlists = User.find(current_user.id).playlists.searchList(@text)
-      @type = params[:search_type]
-    else
-      @playlists = Playlist.all
+      @playlists = User.find(current_user.id).playlists.searchList(@text).paginate(:per_page => 20, :page => params[:page])
     end
     @song_preview = {}
     @playlists.each do |playlist|
@@ -23,6 +20,11 @@ class PlaylistController < ApplicationController
         end
         @song_preview[playlist] << "..."
       end
+    end
+    
+    respond_to do |format|
+      format.html {}
+      format.js { render 'view'}
     end
   end
   

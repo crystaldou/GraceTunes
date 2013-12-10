@@ -19,11 +19,7 @@ Background: songs have been added to database
   	| God Is Able             | Hillsong United            | powerful, hope, with us                  | God Is Able                         | |
   	| Commission My Soul      | Citipointe Live            | evangelism, purpose, great commission    | Commission My Soul: Present         | |
 	| Let Me Sing			  | unknown					   | praise, 								  | unknown								| |
-	Given the following playlists exist:
-	| name                   | 
-	| SWS11172013            |
-	| SWS11102013            |
-	
+
 	And I am on the songs page
 	
 Scenario: search results to songs with title 'From the Inside Out'

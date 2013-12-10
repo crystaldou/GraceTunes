@@ -28,9 +28,18 @@
 
   %div{:style=>'float:left'}
     = link_to 'Edit', edit_song_path(@song), :class=>'btn btn-warning',  :style => 'margin-right:10px; text-decoration: none; font-weight: normal'
+  
+  %div{:style => 'float:left'}
+    %button#previewUrl.btn.btn-success{:style => 'margin-right: 10px'}
+      Preview Song
   -if current_user.try(:admin?)
     %div{:style=>'float:left'}
       = button_to 'Delete', song_path(@song), :method => :delete, :confirm => 'Are you sure?', :class=>'btn btn-danger', :style => 'margin-right:10px'
 
   %div{:style=>'float:left'}
     = button_to 'Back to search bar', root_url, :method => :get, :class=>'btn btn-primary'
+    
+:javascript
+  $('#previewUrl').click(function() {
+    window.open("/previewSong?title=#{escape_javascript @song.title}")
+  })

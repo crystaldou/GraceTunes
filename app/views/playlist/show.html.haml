@@ -1,4 +1,6 @@
 -#  This file is app/views/playlist/show.html.haml
+- if flash[:notice]
+  #notice.message{:class=> 'alert'}= flash[:notice]
 
 %h1= @playlist.name
   
