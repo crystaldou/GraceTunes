@@ -41,14 +41,7 @@ class PlaylistController < ApplicationController
     if not @playlist.users.map { |user| user.id }.include? current_user.try(:id)
       @playlist.users << User.find(current_user.try(:id))
     end
-    @tags = {}
-    @playlist.songss.each do |song|
-      begin
-        @tags[song] = songs.tags.split(", ")
-      rescue
-        @tags[song] = []
-      end
-    end
+    @songs = @playlist.songss
   end
   
   def viewSong
