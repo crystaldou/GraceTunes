@@ -3,11 +3,11 @@ require 'spec_helper'
 describe PlaylistController do
   before :each do
     @playlist = Playlist.create({:name => "name"})
-    @song = Songs.create({:title => "title", :artist => "artist", :album => "album", :tags => "blah"})
+    @song = Songs.create({:title => "title", :artist => "artist", :album => "album", :tags => "blah", :file => {:current_path => "blah"}})
     @playlist.songss << @song
-    
-    stub_env_for_omniauth
-    redirect_to '/auth/google_oauth2'
+    @user = mock_model(User, :name => 'test')
+    @playlist.users << @user
+    User.stub(:find).and_return(@user)
   end
   describe "GET 'index'" do
     it "blah" do
@@ -19,7 +19,7 @@ describe PlaylistController do
   describe 'create' do
     it 'blah' do
       post 'create', :playlist_name => "name"
-      response.should redirect_to playlist_path(2)
+      response.should redirect_to playlist_path(Playlist.find(2).token)
     end
   end
   
@@ -39,19 +39,14 @@ describe PlaylistController do
   
   describe 'blah' do
     it 'should lineremove' do
-      get 'viewSong', :id => @playlist.token
+      get 'viewSong', :id => 1
     end
     
     it 'blah3' do
+      File.should_receive(:read).at_least(:once)
       post 'share', :id => @playlist.token, :emails => "blah"
-      response.should redirect_to playlist_path(1)
+      response.should redirect_to playlist_path(@playlist.token)
     end
   end
 
-end
-
-
-def stub_env_for_omniauth
-  env = { "omniauth.auth" => { "provider" => "google", "uid" => "1234", "extra" => { "user_hash" => { "email" => "ghost@nobody.com" } } } }
-  @controller.stub!(:env).and_return(env)
 end

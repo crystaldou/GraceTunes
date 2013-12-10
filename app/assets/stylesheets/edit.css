@@ -74,3 +74,53 @@ form label {
 }
 
 
+.btn.special {
+    background-color: #F5F5F5;
+    color: #333333;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    text-decoration: none;
+    background-position: 0;
+    transition: none;
+}
+
+.pagination {
+	border-left: 1px solid #ddd;
+	.first{
+		padding : 0;
+		float: none;
+		border: none;
+	}
+	.prev {
+		padding : 0;
+		float: none;
+		border: none;
+	}
+	.page{
+		padding : 0;
+		float: none;
+		border: none;
+	}
+	.next{
+		padding : 0;
+		float: none;
+		border: none;
+	}
+	.last{
+		padding : 0;
+		float: none;
+		border: none;
+	}
+}
+
+.pagination a, .pagination em.current, .pagination span.gap, .pagination span.previous_page, .pagination span.next_page{
+	float: left;
+	padding: 0 14px;
+	line-height: 38px;
+	text-decoration: none;
+	background-color: white;
+	border: 1px solid #DDD;
+}
+
+.pagination em.current {
+    font-size: 20px;
+}

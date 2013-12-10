@@ -2,31 +2,18 @@ class PlaylistController < ApplicationController
   # viewing all playlists
   def index
     if not current_user.nil?
-      @text = params[:search_text]
       @playlists = User.find(current_user.id).playlists.searchList(@text).paginate(:per_page => 20, :page => params[:page])
+    else
+      @playlists = Playlist.all
     end
-    @song_preview = {}
-    @playlists.each do |playlist|
-      @song_preview[playlist] = ""
-      playlist.songss.each do |song|
-        @song_preview[playlist] << song.title << ", "
-      end
-      @song_preview[playlist] = @song_preview[playlist][0...-2]
-      max_length = 150
-      if @song_preview[playlist].length > max_length
-        @song_preview[playlist] = @song_preview[playlist][0,max_length]
-        if @song_preview[playlist][max_length] == ','
-          @song_preview[playlist] = @song_preview[playlist][0...max_length-1]
-        end
-        @song_preview[playlist] << "..."
-      end
-    end
-    
+    @song_preview = Playlist.createPreview @playlists
     respond_to do |format|
       format.html {}
       format.js { render 'view'}
     end
   end
+  
+
   
   def new
     if not current_user.try(:admin?)
@@ -50,25 +37,15 @@ class PlaylistController < ApplicationController
   end
 
   def show
-    id = params[:id]
-    @playlist = Playlist.find_by_token(id)
+    @playlist = Playlist.find_by_token(params[:id])
     if not @playlist.users.map { |user| user.id }.include? current_user.try(:id)
       @playlist.users << User.find(current_user.try(:id))
     end
     @songs = @playlist.songss
-    @tags = {}
-    @songs.each do |song|
-      begin
-        @tags[song] = songs.tags.split(", ")
-      rescue
-        @tags[song] = []
-      end
-    end
   end
   
   def viewSong
-    id = params[:id]
-    @previews = [Songs.find(id)]
+    @previews = [Songs.find(params[:id])]
     respond_to do |format|
       format.html { render :partial =>'preview', :collection => @previews}
       format.js { }
@@ -80,15 +57,10 @@ class PlaylistController < ApplicationController
     content = ""
     counter = 1
     playlist.songss.each do |song| 
-      content += counter.to_s + '. ' 
-      content += song.title + '\t'
-      content += song.artist + '\t'
-      content += song.album + '\t'
-      content += song.tags + '\n'
+      content += counter.to_s + '. ' + song.title + '\t' + song.artist + '\t' + song.album + '\t' +  song.tags + '\n'
       counter += 1
     end 
-    emails = params[:emails].split(',')
-    UserMailer.share_playlist(emails, content, playlist).deliver
+    UserMailer.share_playlist(params[:emails].split(','), content, playlist).deliver
     flash.keep[:notice] = "#{@playlist} successfully shared."
     redirect_to playlist_path(playlist.token)
   end 

@@ -3,8 +3,10 @@ class UserMailer < ActionMailer::Base
   def share_playlist(emails, playlist, content)
   	@content = playlist
   	content.songss.each do |song|
-  	  
-  	  attachments["#{song.title}.doc"] = File.read(song.file.current_path)
+  	  begin
+  	    attachments["#{song.title}.doc"] = File.read(song.file.current_path)
+	    rescue
+      end
 	  end
 	  @token = content.token
     emails.each do |email| 

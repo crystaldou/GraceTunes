@@ -12,11 +12,12 @@
         %th Artist
         %th Album
     %tbody#playlist_list
-      -@songs.each do |song|
-        %tr{:id => "song_#{song.id}", :class => "clickableRow"}
-          %td= song.title
-          %td= song.artist
-          %td= song.album
+      - if not @songs.nil?
+        - @songs.each do |song|
+          %tr{:id => "song_#{song.id}", :class => "clickableRow"}
+            %td= song.title
+            %td= song.artist
+            %td= song.album
   = form_tag action: 'share', method: 'post' do
     = label :playlist, :emails, 'Emails: '
     = text_field_tag :emails
