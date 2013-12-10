@@ -8,7 +8,7 @@ class PlaylistController < ApplicationController
     end
     @song_preview = {}
     @playlists.each do |playlist|
-      createPreview playlist
+      Playlist.createPreview playlist
     end
     
     respond_to do |format|
@@ -18,6 +18,7 @@ class PlaylistController < ApplicationController
   end
   
 
+  
   def new
     if not current_user.try(:admin?)
       render :template => "/errors/unauthorized.html.haml"
