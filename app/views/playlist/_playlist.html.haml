@@ -1,4 +1,4 @@
 %tr
   %td= playlist.name
   %td= @song_preview[playlist]
-  %td= link_to "View", :action => 'show', :id => playlist.token
+  %td= link_to "View", {:action => 'show', :id => playlist.token}, :id => playlist.token

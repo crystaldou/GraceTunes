@@ -21,7 +21,7 @@ Background: songs have been added to database
   	| Commission My Soul      | Citipointe Live            | evangelism, purpose, great commission    | Commission My Soul: Present         | |
 	| Let Me Sing			  | unknown					   | praise, 								  | unknown								| |
 	
-  I am on the view page
+  And I am on the GraceTunes view page
   
   @omniauth_test
 Scenario: add any songs to favorites

@@ -61,7 +61,7 @@ end
 Given /the following playlists exist/ do |playlist_table|
   playlist_table.hashes.each do |playlist|
     @playlist = Playlist.create(playlist)
-    @playlist.user_id = 1
+    @playlist.users << User.find(1)
     @playlist.save!
   end
 end
@@ -90,6 +90,10 @@ When /^(?:|I )view playlist"([^"]*)"$/ do |playlist|
   visit playlist_view_path(playlist)
 end
 
+When /^(?:|I )search "([^"]*)"$/ do |playlist|
+  fill_in("search_text", :with => playlist)
+  click_button("Search")
+end
 
 When /^(?:|I )search by "([^"]*)" with "([^"]*)"$/ do |field, value|
  visit songs_view_path(:search_type => field, :search_text => value)
@@ -109,6 +113,10 @@ end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
+end
+
+When /^(?:|I )follow playlist "([^"]*)"$/ do |playlist|
+  click_link(Playlist.find_by_name(playlist).token)
 end
 When /^(?:|I) add a new playlist$/ do
   click_link("AddPlaylists")

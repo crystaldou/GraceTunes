@@ -10,19 +10,19 @@ Background: songs have been added to database, playlists have been added to data
   	| title                   | artist                     | tags                                      | album                               | lyrics                |
   	| Your Love Never Fails   | Jesus Culture              | love, never fails                        | From The Inside Out                 | Your love never fails, never gives up, never runs out of on me.|
 
-  
-  	Given the following playlists exist:
-  	| name                   |
-  	| SWS11172013            |
-  	| SWS11102013            |
-  	
+
   And I am on the songs page
   
 
 @omniauth_test
 Scenario: add songs to playlists
-  When I follow "Sign in"
   And that user is signed in
+  
+	Given the following playlists exist:
+	| name                   |
+	| SWS11172013            |
+	| SWS11102013            |
+
   Given I am on the GraceTunes view page
   When I add "Your Love Never Fails" to playlist
   Then I should see "Your Love Never Fails was successfully added"

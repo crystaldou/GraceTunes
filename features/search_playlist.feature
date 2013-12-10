@@ -20,7 +20,15 @@ Background: songs have been added to database
   	| God Is Able             | Hillsong United            | powerful, hope, with us                  | God Is Able                         | |
   	| Commission My Soul      | Citipointe Live            | evangelism, purpose, great commission    | Commission My Soul: Present         | |
 	| Let Me Sing			  | unknown					   | praise, 								  | unknown								| |
-	Given the following playlists exist:
+
+	
+	And I am on the songs page
+
+
+    @omniauth_test
+Scenario: search the playlist called "SWS11172013"
+  And that user is signed in
+  Given the following playlists exist:
 	| name                   | 
 	| SWS11172013            |
 	| SWS11102013            |
@@ -31,21 +39,8 @@ Background: songs have been added to database
 	| SWS11172013            | Give Me Faith              |
 	| SWS11172013            | Glorious Day               |
 	| SWS11102013            | Give Me Faith              |
-	
-	And I am on the songs page
-
-
-    @omniauth_test
-Scenario: search the playlist called "SWS11172013"
-  And that user is signed in
   Given I am on the GraceTunes playlist page
   When I search "SWS11172013"
   Then I should see "SWS11172013"
 
-    @omniauth_test
-Scenario: search the playlists with song "Give Me Faith"
-  And that user is signed in
-  Given I am on the GraceTunes playlist page
-  When I search "Give Me Faith"
-  Then I should see "SWS11172013"
-  Then I should see "SWS11102013"
+
