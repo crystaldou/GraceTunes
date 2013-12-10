@@ -6,10 +6,7 @@ class PlaylistController < ApplicationController
     else
       @playlists = Playlist.all
     end
-    @song_preview = {}
-    @playlists.each do |playlist|
-      Playlist.createPreview playlist
-    end
+    @song_preview = Playlist.createPreview @playlists
     
     respond_to do |format|
       format.html {}
