@@ -2,7 +2,9 @@ class PlaylistController < ApplicationController
   # viewing all playlists
   def index
     if not current_user.nil?
-      @playlists = User.find(current_user.id).playlists
+      @text = params[:search_text]
+      @playlists = User.find(current_user.id).playlists.searchList(@text)
+      @type = params[:search_type]
     else
       @playlists = Playlist.all
     end
@@ -86,11 +88,6 @@ class PlaylistController < ApplicationController
     emails = params[:emails].split(',')
     UserMailer.share_playlist(emails, content, playlist).deliver
     flash.keep[:notice] = "#{@playlist} successfully shared."
-    redirect_to playlist_path(playlist)
-  end
-
-  def addToFavorites
-    playlist = Playlist.find_
-  end
-
+    redirect_to playlist_path(playlist.token)
+  end 
 end
