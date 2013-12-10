@@ -53,8 +53,7 @@ class PlaylistController < ApplicationController
   end
 
   def show
-    id = params[:id]
-    @playlist = Playlist.find_by_token(id)
+    @playlist = Playlist.find_by_token(params[:id])
     if not @playlist.users.map { |user| user.id }.include? current_user.try(:id)
       @playlist.users << User.find(current_user.try(:id))
     end
@@ -69,8 +68,7 @@ class PlaylistController < ApplicationController
   end
   
   def viewSong
-    id = params[:id]
-    @previews = [Songs.find(id)]
+    @previews = [Songs.find(params[:id])]
     respond_to do |format|
       format.html { render :partial =>'preview', :collection => @previews}
       format.js { }
@@ -82,15 +80,10 @@ class PlaylistController < ApplicationController
     content = ""
     counter = 1
     playlist.songss.each do |song| 
-      content += counter.to_s + '. ' 
-      content += song.title + '\t'
-      content += song.artist + '\t'
-      content += song.album + '\t'
-      content += song.tags + '\n'
+      content += counter.to_s + '. ' + song.title + '\t' + song.artist + '\t' + song.album + '\t' +  song.tags + '\n'
       counter += 1
     end 
-    emails = params[:emails].split(',')
-    UserMailer.share_playlist(emails, content, playlist).deliver
+    UserMailer.share_playlist(params[:emails].split(','), content, playlist).deliver
     flash.keep[:notice] = "#{@playlist} successfully shared."
     redirect_to playlist_path(playlist.token)
   end 
