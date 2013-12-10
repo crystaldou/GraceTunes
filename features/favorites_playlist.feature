@@ -26,10 +26,8 @@ Background: songs have been added to database
   @omniauth_test
 Scenario: have favorites playlist
   And that user is signed in
-  And 
-  Then I should see "User's Favorites"
-  When I follow "Add to Favorites"
-  Then I should see "has been added to favorites"
+  And I follow "Browse Sets"
+  Then I should see "Favorites"
   Given I am on the GraceTunes playlist page
   Then I should see "Favorites"
 
