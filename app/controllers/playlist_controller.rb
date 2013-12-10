@@ -87,6 +87,10 @@ class PlaylistController < ApplicationController
     UserMailer.share_playlist(emails, content, playlist).deliver
     flash.keep[:notice] = "#{@playlist} successfully shared."
     redirect_to playlist_path(playlist)
+  end
 
-  end 
+  def addToFavorites
+    playlist = Playlist.find_
+  end
+
 end
