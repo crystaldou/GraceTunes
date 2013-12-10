@@ -2,7 +2,6 @@ class PlaylistController < ApplicationController
   # viewing all playlists
   def index
     if not current_user.nil?
-      @text = params[:search_text]
       @playlists = User.find(current_user.id).playlists.searchList(@text).paginate(:per_page => 20, :page => params[:page])
     else
       @playlists = Playlist.all
@@ -19,7 +18,7 @@ class PlaylistController < ApplicationController
   end
   
   def createPreview playlist
-   @song_preview[playlist] = ""
+    @song_preview[playlist] = ""
     playlist.songss.each do |song|
       @song_preview[playlist] << song.title << ", "
     end
@@ -59,9 +58,8 @@ class PlaylistController < ApplicationController
     if not @playlist.users.map { |user| user.id }.include? current_user.try(:id)
       @playlist.users << User.find(current_user.try(:id))
     end
-    @songs = @playlist.songss
     @tags = {}
-    @songs.each do |song|
+    @playlist.songss.each do |song|
       begin
         @tags[song] = songs.tags.split(", ")
       rescue
