@@ -10,3 +10,13 @@
   %li
     Tags:
     = preview.tags
+
+%div{:style => 'float:left'}
+  %button#previewUrl.btn.btn-success{:style => 'margin-right: 10px'}
+    Preview Song
+
+
+:javascript
+  $('#previewUrl').click(function() {
+    window.open("/previewSong?title=#{escape_javascript preview.title}")
+  })

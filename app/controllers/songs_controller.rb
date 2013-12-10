@@ -58,10 +58,10 @@ class SongsController < ApplicationController
     @song = Songs.find params[:id]
     if params[:song][:title].empty?
       #how to raise a field error??
-      raise "Cannot leave song field empty"
+      render :template => "/errors/not_found.html.haml"
     else
       @song.update_attributes!(params[:song])
-      @song.lyrics = parse("public/#{@song.file}").downcase
+      @song.lyrics = parse("public#{@song.file}").downcase
       @song.save!
       flash[:notice] = "Song has been successfully edited"
       redirect_to "/songs/#{@song.id.to_s}"

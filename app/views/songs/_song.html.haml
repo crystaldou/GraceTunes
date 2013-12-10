@@ -4,7 +4,7 @@
   %td= song.album
   %td
     - @tags[song].each do |tag|
-      =button_tag tag, :style => "cursor: text"
+      =button_tag tag, :style => "cursor: initial", :class => 'btn special'
   %td= link_to "View", song_path(song), :id => song.title
   %td= link_to "Edit", edit_song_path(song)
   

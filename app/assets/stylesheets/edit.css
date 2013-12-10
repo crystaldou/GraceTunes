@@ -74,3 +74,11 @@ form label {
 }
 
 
+.btn.special {
+    background-color: #F5F5F5;
+    color: #333333;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    text-decoration: none;
+    background-position: 0;
+    transition: none;
+}
