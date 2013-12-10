@@ -1,0 +1,15 @@
+%div
+  %table#songs{:class => "table table-striped"}
+    %thead
+      %tr
+        %th Title
+        %th Artist
+        %th Album
+        %th Tags
+        %th View
+        %th Edit
+        - if not current_user.nil?
+          %th Playlist
+    %tbody#song_list
+      = render :collection => @songs, :partial => 'songs/song'
+= will_paginate @songs

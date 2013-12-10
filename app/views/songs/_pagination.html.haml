@@ -1,3 +1,10 @@
 = will_paginate @songs
 
 
+:javascript
+  $(function() {
+      $("#paginate .pagination").on('click', 'a', function() {
+          $.getScript(this.href);
+          return false;
+      })
+  })

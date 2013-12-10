@@ -16,7 +16,7 @@
 //= require_tree .
 
 $(function() {
-    $("#paginate a").click(function() {
+    $("#paginate .pagination").on('click', 'a', function() {
         $.getScript(this.href);
         return false;
     })
