@@ -1,8 +1,8 @@
-Feature: display of the results page that after searching for a certain title of the playlist, it generates a list of songs relevant to the search.
+Feature: display favorites playlist after logging in as a new user.
 
   As a church staff
-  I want to search for playlists
-  So that I can find playlists easily
+  I want to have a favorites playlist
+  So that I can keep track of my favorite songs
 
 
 Background: songs have been added to database
@@ -24,9 +24,10 @@ Background: songs have been added to database
   I am on the view page
   
   @omniauth_test
-Scenario: add any songs to favorites
+Scenario: have favorites playlist
   And that user is signed in
-  Then I should see "Add to Favorites"
+  And 
+  Then I should see "User's Favorites"
   When I follow "Add to Favorites"
   Then I should see "has been added to favorites"
   Given I am on the GraceTunes playlist page
