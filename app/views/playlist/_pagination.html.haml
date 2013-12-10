@@ -1,0 +1,9 @@
+= will_paginate @playlists
+
+:javascript
+  $(function() {
+      $("#paginate .pagination").on('click', 'a', function() {
+          $.getScript(this.href);
+          return false;
+      })
+  })

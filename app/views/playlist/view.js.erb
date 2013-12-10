@@ -1,0 +1,2 @@
+$('#playlist_list').html('<%= escape_javascript(render :collection => @playlists, :partial =>"playlist/playlist") %>');
+$('#paginate').html('<%= escape_javascript(render :partial => "playlist/pagination") %>');
