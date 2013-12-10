@@ -60,9 +60,13 @@ class SongsController < ApplicationController
       #how to raise a field error??
       render :template => "/errors/not_found.html.haml"
     else
-      @song.update_attributes!(params[:song])
-      @song.lyrics = parse("public#{@song.file}").downcase
-      @song.save!
+      songparam = params[:song]
+      @song.update_attributes!(:title => songparam[:title], :artist => songparam[:artist], :album => songparam[:album], :tags => songparam[:tags])
+      if not params[:file].nil?
+        @song.update_attributes!(:file => params[:file])
+        @song.lyrics = parse("public#{@song.file}").downcase
+        @song.save!
+      end
       flash[:notice] = "Song has been successfully edited"
       redirect_to "/songs/#{@song.id.to_s}"
     end
