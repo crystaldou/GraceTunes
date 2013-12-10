@@ -17,20 +17,7 @@ class PlaylistController < ApplicationController
     end
   end
   
-  def createPreview playlist
-    @song_preview[playlist] = ""
-    playlist.songss.each do |song|
-      @song_preview[playlist] << song.title << ", "
-    end
-    @song_preview[playlist] = @song_preview[playlist][0...-2]
-    if @song_preview[playlist].length > 150
-      @song_preview[playlist] = @song_preview[playlist][0,150]
-      if @song_preview[playlist][max_length] == ','
-        @song_preview[playlist] = @song_preview[playlist][0...150]
-      end
-      @song_preview[playlist] << "..."
-    end
-  end
+
   def new
     if not current_user.try(:admin?)
       render :template => "/errors/unauthorized.html.haml"
