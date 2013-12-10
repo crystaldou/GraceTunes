@@ -62,7 +62,7 @@ class SongsController < ApplicationController
     else
       songparam = params[:song]
       @song.update_attributes!(:title => songparam[:title], :artist => songparam[:artist], :album => songparam[:album], :tags => songparam[:tags])
-      if not params[:file].nil?
+      if not songparam[:file].nil?
         @song.update_attributes!(:file => params[:file])
         @song.lyrics = parse("public#{@song.file}").downcase
         @song.save!

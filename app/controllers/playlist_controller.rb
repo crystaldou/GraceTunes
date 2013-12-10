@@ -7,7 +7,6 @@ class PlaylistController < ApplicationController
       @playlists = Playlist.all
     end
     @song_preview = Playlist.createPreview @playlists
-    
     respond_to do |format|
       format.html {}
       format.js { render 'view'}
