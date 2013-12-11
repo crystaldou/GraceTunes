@@ -1,6 +1,7 @@
 class PlaylistController < ApplicationController
   # viewing all playlists
   def index
+    @text = params[:search_text]
     if not current_user.nil?
       @playlists = User.find(current_user.id).playlists.searchList(@text).paginate(:per_page => 20, :page => params[:page])
     else
