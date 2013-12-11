@@ -5,7 +5,7 @@ class Playlist < ActiveRecord::Base
   before_create :add_token
 
   def self.searchList(text)
-    return Playlist.where("name LIKE '%#{text}%'")
+    return Playlist.where("name ILIKE '%#{text}%'")
   end
 
   def self.createPreview playlists
