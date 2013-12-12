@@ -94,7 +94,7 @@ class SongsController < ApplicationController
       @text = params[:search_text].split.map(&:capitalize).join(' ')
       @songs = Songs.searchText(@type, @text).paginate(:per_page => 10, :page => params[:page])
     else
-      @songs = Songs.scoped.paginate(:per_page => 5, :page => params[:page])
+      @songs = Songs.scoped.paginate(:per_page => 10, :page => params[:page])
     end
     @tags = {}
     @songs.each do |song|
