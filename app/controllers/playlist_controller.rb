@@ -42,7 +42,7 @@ class PlaylistController < ApplicationController
   def show
     @playlist = Playlist.find_by_token(params[:id])
     if current_user.nil?
-      redirect_to '/auth/google_oauth2'
+      redirect_to '/auth/google_oauth2' and return
     end
     if not @playlist.users.map { |user| user.id }.include? current_user.try(:id)
       @playlist.users << User.find(current_user.try(:id))
