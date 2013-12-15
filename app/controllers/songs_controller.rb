@@ -121,6 +121,12 @@ class SongsController < ApplicationController
     redirect_to request.referer
   end
 
+  def addTags
+    @song = Songs.find(params[:id])
+    @song.update_attributes(:tags => params[:tags])
+    flash[:notice] = "Tags have been added"
+    redirect_to request.referer
+  end
   # def test
   #   @texts = {}
   #   Dir['public/songs/*'].each do |file|
