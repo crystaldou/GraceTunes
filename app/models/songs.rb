@@ -11,8 +11,16 @@ class Songs < ActiveRecord::Base
     :using => {
       :tsearch => {:dictionary => "english", :any_word => "true"}
     }
-  attr_accessible :title, :artist, :album, :tags, :file, :lyrics
-  mount_uploader :file, FileUploader
+  attr_accessible :title, :artist, :album, :tags, :lyrics, :chords
+  has_attached_file :chords, 
+    :storage => :s3,
+    :bucket => 'gracetunes',
+    :s3_credentials => {
+      :access_key_id => 'AKIAICH24MMQVHPTTXGA',
+      :secret_access_key => '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'
+    }
+  
+  
   
   def self.searchText(type, text)
     if type == "Title"

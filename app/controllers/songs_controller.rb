@@ -6,12 +6,7 @@ class SongsController < ApplicationController
   def show
     id = params[:id] # retrieve movie ID from URI route
     @song = Songs.find(id) # look up movie by unique ID
-
-    if @song.file
-      @link = @song.file.to_s
-    else
-      @link = "/songs/#{@song.id.to_s}"
-    end
+    @link = findUrl(@song.chords.url)
   end
 
   def preview
@@ -41,12 +36,18 @@ class SongsController < ApplicationController
 
   def create
     @song = Songs.create!(params[:song])
-    @song.lyrics = parse("public/#{@song.file}")
+    url = findUrl @song.chords.url
+    @song.lyrics = parse(url)
     @song.save!
     flash[:notice] = "#{@song.title} was successfully created."
     redirect_to "/songs/#{@song.id.to_s}"
   end
 
+  def findUrl chordUrl
+    songIndex = chordUrl.index("song")
+    url = "http://gracetunes.s3.amazonaws.com/" + chordUrl[songIndex...chordUrl.length]  
+    return url
+  end
   # edit_song_path(song)
   # Edit page for a song
   def edit
@@ -64,7 +65,7 @@ class SongsController < ApplicationController
       @song.update_attributes!(:title => songparam[:title], :artist => songparam[:artist], :album => songparam[:album], :tags => songparam[:tags])
       if not songparam[:file].nil?
         @song.update_attributes!(:file => songparam[:file])
-        @song.lyrics = parse("public#{@song.file}").downcase
+        @song.lyrics = parse(findUrl(@song.chords.url)).downcase
         @song.save!
       end
       flash[:notice] = "Song has been successfully edited"
@@ -75,8 +76,7 @@ class SongsController < ApplicationController
 
   def destroy
     @song = Songs.find(params[:id])
-    @song.remove_file!
-    system "rm -rf public/data/#{@song.id.to_s}"
+    @song.chords.destroy
     @song.destroy
     flash[:notice] = "Successfully removed '#{@song.title}' "
     redirect_to songs_view_path

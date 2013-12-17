@@ -1,2 +1,3 @@
 $('#song_list').html('<%= escape_javascript(render :collection => @songs, :partial =>"songs/song") %>');
 $('#paginate').html('<%= escape_javascript(render :partial => "songs/pagination") %>');
+

@@ -4,7 +4,7 @@
   %td= song.album
   %td
     - @tags[song].each do |tag|
-      =button_tag tag, :style => "cursor: initial", :class => 'btn special'
+      =button_tag tag, :style => "cursor: initial", :class => 'btn special click'
   %td= button_tag "Add tag", :class => 'btn btn-default', "data-target" => "#tag#{song.id}", "data-toggle" => "modal"
   - if not current_user.nil?
     %td
@@ -44,3 +44,10 @@
             params = params.slice(0, params.length - 2)
             window.location.href = "/songs/#{song.id}/addTags?tags=" + params
           })
+          
+:javascript
+  $('.click').click(function() {
+    $('#search_type').val('Tags');
+    $('#search_text').val($(this).text())
+    $('#submit_button').click();
+    })
