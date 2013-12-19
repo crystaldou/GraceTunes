@@ -6,6 +6,7 @@
     - @tags[song].each do |tag|
       =button_tag tag, :style => "cursor: initial", :class => 'btn special click'
   %td= button_tag "Add tag", :class => 'btn btn-default', "data-target" => "#tag#{song.id}", "data-toggle" => "modal"
+  %td= link_to "View", "/songs/#{song.id}"
   - if not current_user.nil?
     %td
       = form_tag songs_view_path, :method => :post, :id => song.id do

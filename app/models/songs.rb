@@ -11,6 +11,12 @@ class Songs < ActiveRecord::Base
     :using => {
       :tsearch => {:dictionary => "english", :any_word => "true"}
     }
+  
+  pg_search_scope :search_all,
+    :against => [:title, :artist, :lyrics, :tags],
+    :using => {
+      :tsearch => {:dictionary => "english", :any_word => "true"}
+    }
   attr_accessible :title, :artist, :album, :tags, :lyrics, :chords
   has_attached_file :chords, 
     :storage => :s3,
@@ -37,7 +43,14 @@ class Songs < ActiveRecord::Base
       else
         return Songs.where("lyrics LIKE '%#{text.downcase}%'")
       end
+    elsif type == "All"
+      if ActiveRecord::Base.connection.instance_values["config"][:adapter] != "sqlite3"
+        return Songs.search_all(text.downcase)
+      else
+        return Songs.where("title LIKE '%#{text.downcase}%'")
+      end
     end
+    
   end
 
 end
