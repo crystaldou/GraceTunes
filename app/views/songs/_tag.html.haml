@@ -1,0 +1,29 @@
+.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel#{tag.id}", role: "dialog", style: "display:none", tabindex: "-1", :id => "tag#{tag.id}"}
+  .modal-dialog
+    .modal-content
+      :javascript
+        $(document).ready(function() {
+            $("#myTag#{tag.id}").tagit({
+              removeConfirmation: true,
+              allowSpaces: true,
+              singleField: true
+            });
+        });
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} 
+        %h4#myModalLabel.modal-title Add Tags
+      .modal-body
+        %ul{:id => "myTag#{tag.id}"}
+          - @tags[tag].each do |tag|
+            %li= tag
+        = button_tag 'Add tags', :class => 'btn btn-primary btn-lg', :id => "addTag#{tag.id}"
+        %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+        :javascript
+          $("#addTag#{tag.id}").click(function() {
+            params = ""
+            $("#myTag#{tag.id} span.tagit-label").each(function(i) {
+             params += $(this).text() + ', '
+            })
+            params = params.slice(0, params.length - 2)
+            window.location.href = "/songs/#{tag.id}/addTags?tags=" + params
+          })

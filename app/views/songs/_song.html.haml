@@ -13,38 +13,9 @@
         = text_field_tag :song_id, song.id, :style => 'display: none'
         = select_tag :playlist, options_for_select(User.find(current_user.id).playlists.map {|playlist| "#{playlist.name}, #{playlist.id}"} || ["none"], params[:playlist]), :class => 'selectpicker', :style => "width: 100px"
         = submit_tag "Add", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px', :id => "#{song.title}_button"
-      
-      
 
-.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel#{song.id}", role: "dialog", style: "display:none", tabindex: "-1", :id => "tag#{song.id}"}
-  .modal-dialog
-    .modal-content
-      :javascript
-        $(document).ready(function() {
-            $("#myTag#{song.id}").tagit({
-              removeConfirmation: true,
-              allowSpaces: true,
-              singleField: true
-            });
-        });
-      .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} 
-        %h4#myModalLabel.modal-title Add Tags
-      .modal-body
-        %ul{:id => "myTag#{song.id}"}
-          - @tags[song].each do |tag|
-            %li= tag
-        = button_tag 'Add tags', :class => 'btn btn-primary btn-lg', :id => "addTag#{song.id}"
-        %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
-        :javascript
-          $("#addTag#{song.id}").click(function() {
-            params = ""
-            $("#myTag#{song.id} span.tagit-label").each(function(i) {
-             params += $(this).text() + ', '
-            })
-            params = params.slice(0, params.length - 2)
-            window.location.href = "/songs/#{song.id}/addTags?tags=" + params
-          })
+
+
           
 :javascript
   $('.click').click(function() {
