@@ -17,7 +17,7 @@ class Songs < ActiveRecord::Base
     :using => {
       :tsearch => {:dictionary => "english", :any_word => "true"}
     }
-  attr_accessible :title, :artist, :album, :tags, :lyrics, :chords
+  attr_accessible :title, :artist, :album, :tags, :lyrics, :chords, :chords_file_name
   has_attached_file :chords, 
     :storage => :s3,
     :bucket => 'gracetunes',
