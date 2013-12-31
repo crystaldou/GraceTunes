@@ -45,7 +45,9 @@ class SongsController < ApplicationController
 
   def findUrl chordUrl
     songIndex = chordUrl.index("song")
-    url = "http://gracetunes.s3.amazonaws.com/" + chordUrl[songIndex...chordUrl.length]  
+    if not songIndex.nil?
+      url = "http://gracetunes.s3.amazonaws.com/" + chordUrl[songIndex...chordUrl.length]  
+    end
     return url
   end
   # edit_song_path(song)
