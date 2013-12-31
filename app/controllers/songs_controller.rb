@@ -66,7 +66,7 @@ class SongsController < ApplicationController
       songparam = params[:song]
       @song.update_attributes!(:title => songparam[:title], :artist => songparam[:artist], :album => songparam[:album], :tags => songparam[:tags])
       if not songparam[:file].nil?
-        @song.update_attributes!(:file => songparam[:file])
+        @song.update_attributes!(:chords => songparam[:file])
         @song.lyrics = parse(findUrl(@song.chords.url)).downcase
         @song.save!
       end
