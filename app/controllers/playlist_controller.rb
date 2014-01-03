@@ -60,10 +60,10 @@ class PlaylistController < ApplicationController
 
   def share
     playlist = Playlist.find_by_token(params[:id])
-    content = ""
+    content = []
     counter = 1
     playlist.songss.each do |song| 
-      content += counter.to_s + '. ' + song.title + " by\t" + song.artist + "\n"
+      content << counter.to_s + '. ' + song.title + " by\t" + song.artist + "\n"
       counter += 1
     end 
     UserMailer.share_playlist(params[:emails].split(','), content, playlist).deliver

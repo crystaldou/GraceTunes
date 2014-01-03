@@ -5,7 +5,10 @@
   </head>
   <body>
     <h1>Hello! You have received a playlist from GraceTunes!</h1>
-    <%= @content %> 
+    <% @content.each do |content| %>
+     <%= content %>
+     <br>
+    <% end %>
     <br>
     <br>
     
