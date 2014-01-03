@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
         if not songIndex.nil?
           url = "http://gracetunes.s3.amazonaws.com/" + chordUrl[songIndex...chordUrl.length]  
         end
-  	    attachments[song.chords.original_filename] = open(url)
+  	    attachments[song.chords.original_filename] = File.read(open(url))
 	    rescue
       end
 	  end
