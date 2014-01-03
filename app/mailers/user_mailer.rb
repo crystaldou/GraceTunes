@@ -4,7 +4,11 @@ class UserMailer < ActionMailer::Base
   	@content = playlist
   	content.songss.each do |song|
   	  begin
-  	    attachments[song.chords.original_filename] = File.read(song.chords.url)
+  	    songIndex = chordUrl.index("song")
+        if not songIndex.nil?
+          url = "http://gracetunes.s3.amazonaws.com/" + chordUrl[songIndex...chordUrl.length]  
+        end
+  	    attachments[song.chords.original_filename] = File.read(url)
 	    rescue
       end
 	  end
