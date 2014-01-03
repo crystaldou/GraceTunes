@@ -14,6 +14,9 @@
 %div{:style => 'float:left'}
   %button#downloadUrl.btn.btn-success{:style => 'margin-right: 10px'}
     Download
+%div{:style => 'float:left'}
+  %button#delete.btn.btn-warning{:style => 'margin-right: 10px'}
+    Delete from Playlist
 
 
 :javascript
@@ -25,4 +28,9 @@
       url = "http://gracetunes.s3.amazonaws.com/" + chordUrl.slice(songIndex, chordUrl.length); 
     }
     window.open(url)
+  })
+  
+  $('#delete').click(function() {
+    id = "#{escape_javascript preview.title}"
+    window.location.href = '/deleteFromPlaylist?song_id=' + id + '&playlist_id=' + window.location.pathname.slice(10)
   })

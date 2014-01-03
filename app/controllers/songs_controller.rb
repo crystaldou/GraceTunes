@@ -118,6 +118,10 @@ class SongsController < ApplicationController
     @playlistId = params[:playlist].split(", ")[1]
     @playlist = Playlist.find(@playlistId)
     @song = Songs.find(@songId)
+    if @playlist.songss.include? @song
+      flash[:notice] = "#{@song.title} is already in #{@playlist.name}"
+      redirect_to request.referer and return
+    end
     @playlist.songss << @song
     flash[:notice] = "#{@song.title} was successfully added"
     redirect_to request.referer

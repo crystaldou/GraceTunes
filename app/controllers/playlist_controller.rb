@@ -57,6 +57,13 @@ class PlaylistController < ApplicationController
       format.js { }
     end
   end
+  
+  def deleteFromPlaylist
+    @song = Songs.find_by_title(params[:song_id])
+    @playlist = Playlist.find_by_token(params[:playlist_id])
+    @playlist.songss.delete(@song)
+    redirect_to "/playlist/#{@playlist.token}"
+  end
 
   def share
     playlist = Playlist.find_by_token(params[:id])
