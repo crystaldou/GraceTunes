@@ -63,7 +63,7 @@ class PlaylistController < ApplicationController
     content = ""
     counter = 1
     playlist.songss.each do |song| 
-      content += counter.to_s + '. ' + song.title + "\t" + song.artist + "\t" + song.album + "\t" +  song.tags + "\n"
+      content += counter.to_s + '. ' + song.title + " by\t" + song.artist + "\n"
       counter += 1
     end 
     UserMailer.share_playlist(params[:emails].split(','), content, playlist).deliver
