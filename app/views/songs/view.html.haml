@@ -8,7 +8,7 @@
 
 
 %h1 Results
-= form_tag songs_view_path, :remote => true, :method => :get do
+= form_tag songs_view_path, :method => :get do
   = select_tag :search_type, options_for_select([["Title","Title"], ["Artist", "Artist"], ["Album" ,"Album"], ["Tags","Tags"], ["Lyrics", "Lyrics"]], params[:search_type]), :class => 'selectpicker'
   = text_field_tag 'search_text', nil, :placeholder => 'Enter text here', :style => 'width: 500px'
   = submit_tag "Search", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px', :id => "submit_button"
@@ -34,7 +34,7 @@
     %tbody#song_list
       = render :collection => @songs, :partial => 'songs/song'
 %div#paginate
-  = render :partial => 'songs/pagination'
+  = will_paginate @songs
   
   
 :javascript

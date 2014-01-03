@@ -12,11 +12,17 @@
     = preview.tags
 
 %div{:style => 'float:left'}
-  %button#previewUrl.btn.btn-success{:style => 'margin-right: 10px'}
-    Preview Song
+  %button#downloadUrl.btn.btn-success{:style => 'margin-right: 10px'}
+    Download
 
 
 :javascript
-  $('#previewUrl').click(function() {
-    window.open("/previewSong?title=#{escape_javascript preview.title}")
+  $('#downloadUrl').click(function() {
+    chordUrl = "#{escape_javascript preview.chords.url}";
+    songIndex = chordUrl.indexOf("song");
+    if (songIndex != -1)
+    {
+      url = "http://gracetunes.s3.amazonaws.com/" + chordUrl.slice(songIndex, chordUrl.length); 
+    }
+    window.open(url)
   })
