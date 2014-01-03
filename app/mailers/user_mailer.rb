@@ -4,12 +4,13 @@ class UserMailer < ActionMailer::Base
   	@content = playlist
   	content.songss.each do |song|
   	  begin
+  	    require 'open-uri'
   	    chordUrl = song.chords.url
   	    songIndex = chordUrl.index("song")
         if not songIndex.nil?
           url = "http://gracetunes.s3.amazonaws.com/" + chordUrl[songIndex...chordUrl.length]  
         end
-  	    attachments[song.chords.original_filename] = File.read(url)
+  	    attachments[song.chords.original_filename] = open(url)
 	    rescue
       end
 	  end
