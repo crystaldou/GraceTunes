@@ -18,7 +18,7 @@ class Playlist < ActiveRecord::Base
       @song_preview[playlist] = @song_preview[playlist][0...-2]
       if @song_preview[playlist].length > 150
         @song_preview[playlist] = @song_preview[playlist][0,150]
-        if @song_preview[playlist][max_length] == ','
+        if @song_preview[playlist][150] == ','
           @song_preview[playlist] = @song_preview[playlist][0...150]
         end
         @song_preview[playlist] << "..."
