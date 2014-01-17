@@ -9,7 +9,7 @@
 
 %h1 Results
 = form_tag songs_view_path, :method => :get do
-  = select_tag :search_type, options_for_select([["Title","Title"], ["Artist", "Artist"], ["Album" ,"Album"], ["Tags","Tags"], ["Lyrics", "Lyrics"]], params[:search_type]), :class => 'selectpicker'
+  = select_tag :search_type, options_for_select([["Title","Title"], ["Artist", "Artist"], ["Tags","Tags"], ["Lyrics", "Lyrics"]], params[:search_type]), :class => 'selectpicker'
   = text_field_tag 'search_text', nil, :placeholder => 'Enter text here', :style => 'width: 500px'
   = submit_tag "Search", :class => 'btn btn-primary btn-lg', :style => 'margin-bottom: 10px', :id => "submit_button"
 
@@ -19,13 +19,11 @@
   %table#songs{:class => "table table-striped"}
     %col{:width => "180"}
     %col{:width => "180"}
-    %col{:width => "150"}
     %col{:width => "330"}
     %thead
       %tr
         %th Title
         %th Artist
-        %th Album
         %th Tags
         %th Add Tag
         %th View

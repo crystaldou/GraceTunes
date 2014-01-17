@@ -35,7 +35,9 @@ class SongsController < ApplicationController
   end
 
   def create
+    tags = params[:tags].split(',').join(', ')
     @song = Songs.create!(params[:song])
+    @song.tags = tags
     url = findUrl @song.chords.url
     @song.lyrics = parse(url)
     @song.save!
@@ -65,11 +67,13 @@ class SongsController < ApplicationController
     else
       songparam = params[:song]
       @song.update_attributes!(:title => songparam[:title], :artist => songparam[:artist], :album => songparam[:album], :tags => songparam[:tags])
+      tags = params[:tags].split(',').join(', ')
+      @song.tags = tags
       if not songparam[:file].nil?
         @song.update_attributes!(:chords => songparam[:file])
         @song.lyrics = parse(findUrl(@song.chords.url)).downcase
-        @song.save!
       end
+      @song.save!
       flash[:notice] = "Song has been successfully edited"
       redirect_to "/songs/#{@song.id.to_s}"
     end

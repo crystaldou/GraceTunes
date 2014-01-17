@@ -1,3 +1,7 @@
+%link{href: "http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css", rel: "stylesheet", type: "text/css"}/
+%script{charset: "utf-8", src: "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js", type: "text/javascript"}
+%script{charset: "utf-8", src: "/js/tag-it.js", type: "text/javascript"}
+
 %div{:style=>'margin-left:25px; margin-right:25px'}
   %h1 Create New Song
 
@@ -11,12 +15,8 @@
     = text_field :song, 'artist'
     %br
 
-    = label :song, :artist, 'Album: '
-    = text_field :song, 'album'
-    %br
-
     = label :song, :tags, 'Tags: '
-    = text_field :song, 'tags'
+    %ul#myTag{:style => 'width: 209px'}
     %br
 
     = label :song, :chords, 'Choose file: '
@@ -25,3 +25,15 @@
     %br
 
     = submit_tag 'Save Changes', :id => 'submit_song', :class => 'btn btn-warning'
+    
+
+
+
+:javascript
+  $(document).ready(function() {
+      $("#myTag").tagit({
+        removeConfirmation: true,
+        allowSpaces: true,
+        singleField: true
+      });
+  });
